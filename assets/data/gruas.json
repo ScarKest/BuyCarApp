@@ -1,0 +1,86 @@
+{
+    "Grua": [{
+            "Florida": [{
+                "Estado": "Alabama",
+                "Cities": [{
+                    "Name": "string",
+                    "Price": 0.0
+                }, {
+                    "Name": "string",
+                    "Price": 0.0
+                }]
+
+            }, {
+                "Estado": "Arkansas",
+                "Cities": [{
+                    "Name": "string",
+                    "Price": 0.0
+                }, {
+                    "Name": "string",
+                    "Price": 0.0
+                }]
+
+            }, {
+                "Estado": "Florida",
+                "Cities": [{
+                    "Name": "string",
+                    "Price": 0.0
+                }, {
+                    "Name": "string",
+                    "Price": 0.0
+                }]
+
+            }, {
+                "Estado": "Georgia",
+                "Cities": [{
+                    "Name": "string",
+                    "Price": 0.0
+                }, {
+                    "Name": "string",
+                    "Price": 0.0
+                }]
+
+            }, {
+                "Estado": "Illinois",
+                "Cities": [{
+                    "Name": "string",
+                    "Price": 0.0
+                }, {
+                    "Name": "string",
+                    "Price": 0.0
+                }]
+
+            }, {
+                "Estado": "Indiana",
+                "Cities": [{
+                    "Name": "string",
+                    "Price": 0.0
+                }, {
+                    "Name": "string",
+                    "Price": 0.0
+                }]
+
+            }, {
+                "Estado": "Iowa",
+                "Cities": [{
+                    "Name": "string",
+                    "Price": 0.0
+                }, {
+                    "Name": "string",
+                    "Price": 0.0
+                }]
+
+            }]
+        },
+        {
+            "California": {
+                "Name": "string",
+                "Cities": [{
+                    "Name": "string",
+                    "Price": 0.0
+                }]
+            }
+        }
+    ]
+
+}

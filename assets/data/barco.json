@@ -1,0 +1,25 @@
+[{
+    "Tamaño": "Pequeño",
+    "Precio": 1325.00
+}, {
+    "Tamaño": "Especial",
+    "Precio": 1350.00
+}, {
+    "Tamaño": "Mediano",
+    "Precio": 1375.00
+}, {
+    "Tamaño": "Grande",
+    "Precio": 1425.00
+}, {
+    "Tamaño": "Extra Grande",
+    "Precio": 1850.00
+}, {
+    "Tamaño": "Extra Extra Grande",
+    "Precio": 0.00
+}, {
+    "Tamaño": "Motos",
+    "Precio": 650.00
+}, {
+    "Tamaño": "Carga",
+    "Precio": 200.00
+}]
