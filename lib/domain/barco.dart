@@ -5,5 +5,5 @@ class Barco {
     });
 
     final String tipo;
-    final int precio;
+    final String precio;
 }

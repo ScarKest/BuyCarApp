@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "687121477978",
+    "firebase_url": "https://scarkest-personal-projects-default-rtdb.firebaseio.com",
     "project_id": "scarkest-personal-projects",
     "storage_bucket": "scarkest-personal-projects.appspot.com"
   },
