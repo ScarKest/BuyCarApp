@@ -1,8 +1,6 @@
-import 'package:buycar/data/models/barco_model.dart';
+import 'package:buycar/data/datasource/local_datasource.dart';
 import 'package:buycar/domain/barco.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ClientScreen extends StatefulWidget {
   const ClientScreen({super.key});
@@ -12,7 +10,7 @@ class ClientScreen extends StatefulWidget {
 }
 
 class _ClientScreenState extends State<ClientScreen> {
-  var barcosList = [];
+  List<Barco> barcosList = [];
   //Controladores de texto
   TextEditingController priceController = TextEditingController();
   TextEditingController gruaController = TextEditingController();
@@ -21,26 +19,6 @@ class _ClientScreenState extends State<ClientScreen> {
   double precio = 0;
   double grua = 0;
   double barco = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _getData();
-  }
-
-  Future<void> _getData() async {
-    final CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection('barco');
-    final barcos = await collectionReference.get();
-    if (barcos.docs.isNotEmpty) {
-      var response = barcoModelFromMap(barcos.docs.toString());
-      // for (final barco in barcos.docs) {
-      //   print('Barco numero ${barco.id} ${barco.data()}');
-      //   barcosList.add(barco.data());
-      // }
-      print('Lista de barcos ${response.precio}');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +32,11 @@ class _ClientScreenState extends State<ClientScreen> {
         itemBuilder: (context, index) {
           return Row(
             children: [
-              Text(barcosList.first.toString()),
+              Text(barcosList[index].tipo),
+              const SizedBox(
+                width: 40,
+              ),
+              Text(barcosList[index].precio),
             ],
           );
         },
@@ -69,7 +51,7 @@ class _ClientScreenState extends State<ClientScreen> {
         _field('Precio del carro', priceController),
         _field('Precio de la Grua', gruaController),
         _field('Precio del barco', barcoController),
-        Text('Precio ${_calculate().toString()}'),
+        const Text('Precio'),
         ElevatedButton(
           onPressed: () => setState(() {
             precio = double.parse(priceController.text);
@@ -95,12 +77,5 @@ class _ClientScreenState extends State<ClientScreen> {
         ),
       ],
     );
-  }
-
-  Future<double> _calculate() async {
-    final response = await rootBundle.loadString('assets/data/barco.json');
-    // var barcoJson = barcoFromJson(response);
-    // print(barcoJson);
-    return grua + barco + precio;
   }
 }

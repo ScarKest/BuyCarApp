@@ -1,9 +1,4 @@
-import 'dart:convert';
-
 import 'package:buycar/domain/barco.dart';
-
-BarcoModel barcoModelFromMap(String str) =>
-    BarcoModel.fromMap(json.decode(str) as Map<String,String>);
 
 class BarcoModel extends Barco {
   BarcoModel({
@@ -11,8 +6,16 @@ class BarcoModel extends Barco {
     required super.precio,
   });
 
-  factory BarcoModel.fromMap(Map<String, dynamic> json) => BarcoModel(
-        precio: json['precio'].toString(),
-        tipo: json['tipo'].toString(),
-      );
+  BarcoModel.fromJson(Map<String, dynamic> json)
+      : this(
+          tipo: json['tipo'].toString(),
+          precio: json['precio'].toString(),
+        );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'tipo':tipo,
+      'precio': precio
+    };
+  }
 }
