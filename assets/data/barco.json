@@ -1,25 +1,56 @@
-[{
-    "Tamaño": "Pequeño",
-    "Precio": 1325.00
-}, {
-    "Tamaño": "Especial",
-    "Precio": 1350.00
-}, {
-    "Tamaño": "Mediano",
-    "Precio": 1375.00
-}, {
-    "Tamaño": "Grande",
-    "Precio": 1425.00
-}, {
-    "Tamaño": "Extra Grande",
-    "Precio": 1850.00
-}, {
-    "Tamaño": "Extra Extra Grande",
-    "Precio": 0.00
-}, {
-    "Tamaño": "Motos",
-    "Precio": 650.00
-}, {
-    "Tamaño": "Carga",
-    "Precio": 200.00
-}]
+{
+    "barco": [{
+        "florida": [{
+            "Tamaño": "Pequeño",
+            "Precio": 1375.00
+        }, {
+            "Tamaño": "Especial",
+            "Precio": 1395.00
+        }, {
+            "Tamaño": "Mediano",
+            "Precio": 1425.00
+        }, {
+            "Tamaño": "Grande",
+            "Precio": 1475.00
+        }, {
+            "Tamaño": "Extra Grande",
+            "Precio": 1900.00
+        }, {
+            "Tamaño": "Extra Extra Grande",
+            "Precio": 0.00
+        }, {
+            "Tamaño": "Motos",
+            "Precio": 650.00
+        }, {
+            "Tamaño": "Carga",
+            "Precio": 200.00
+        }]
+
+    }, {
+        "california": [{
+            "Tamaño": "Pequeño",
+            "Precio": 1505.00
+        }, {
+            "Tamaño": "Especial",
+            "Precio": 1555.00
+        }, {
+            "Tamaño": "Mediano",
+            "Precio": 1605.00
+        }, {
+            "Tamaño": "Grande",
+            "Precio": 1705.00
+        }, {
+            "Tamaño": "Extra Grande",
+            "Precio": 1805.00
+        }, {
+            "Tamaño": "Extra Extra Grande",
+            "Precio": 0.00
+        }, {
+            "Tamaño": "Motos",
+            "Precio": 755.00
+        }, {
+            "Tamaño": "Carga",
+            "Precio": 200.00
+        }]
+    }]
+}
