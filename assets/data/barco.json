@@ -1,56 +1,55 @@
 {
-    "barco": [{
+    "barco": {
         "florida": [{
-            "Tamaño": "Pequeño",
-            "Precio": 1375.00
+            "Size": "Pequeño",
+            "Price": 1375.00
         }, {
-            "Tamaño": "Especial",
-            "Precio": 1395.00
+            "Size": "Especial",
+            "Price": 1395.00
         }, {
-            "Tamaño": "Mediano",
-            "Precio": 1425.00
+            "Size": "Mediano",
+            "Price": 1425.00
         }, {
-            "Tamaño": "Grande",
-            "Precio": 1475.00
+            "Size": "Grande",
+            "Price": 1475.00
         }, {
-            "Tamaño": "Extra Grande",
-            "Precio": 1900.00
+            "Size": "Extra Grande",
+            "Price": 1900.00
         }, {
-            "Tamaño": "Extra Extra Grande",
-            "Precio": 0.00
+            "Size": "Extra Extra Grande",
+            "Price": 0.00
         }, {
-            "Tamaño": "Motos",
-            "Precio": 650.00
+            "Size": "Motos",
+            "Price": 650.00
         }, {
-            "Tamaño": "Carga",
-            "Precio": 200.00
-        }]
+            "Size": "Carga",
+            "Price": 200.00
+        }],
 
-    }, {
         "california": [{
-            "Tamaño": "Pequeño",
-            "Precio": 1505.00
+            "Size": "Pequeño",
+            "Price": 1505.00
         }, {
-            "Tamaño": "Especial",
-            "Precio": 1555.00
+            "Size": "Especial",
+            "Price": 1555.00
         }, {
-            "Tamaño": "Mediano",
-            "Precio": 1605.00
+            "Size": "Mediano",
+            "Price": 1605.00
         }, {
-            "Tamaño": "Grande",
-            "Precio": 1705.00
+            "Size": "Grande",
+            "Price": 1705.00
         }, {
-            "Tamaño": "Extra Grande",
-            "Precio": 1805.00
+            "Size": "Extra Grande",
+            "Price": 1805.00
         }, {
-            "Tamaño": "Extra Extra Grande",
-            "Precio": 0.00
+            "Size": "Extra Extra Grande",
+            "Price": 0.00
         }, {
-            "Tamaño": "Motos",
-            "Precio": 755.00
+            "Size": "Motos",
+            "Price": 755.00
         }, {
-            "Tamaño": "Carga",
-            "Precio": 200.00
+            "Size": "Carga",
+            "Price": 200.00
         }]
-    }]
+    }
 }

@@ -1,6 +1,9 @@
-import 'package:buycar/data/datasource/local_datasource.dart';
+import 'dart:convert';
+
+import 'package:buycar/data/models/barco_model.dart';
 import 'package:buycar/domain/barco.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ClientScreen extends StatefulWidget {
   const ClientScreen({super.key});
@@ -19,29 +22,38 @@ class _ClientScreenState extends State<ClientScreen> {
   double precio = 0;
   double grua = 0;
   double barco = 0;
+  Barco _items = Barco(california: [], florida: []);
+
+  Future<void> readData() async {
+    final response = await rootBundle.loadString('assets/data/barco.json');
+    final ship = barcoModelFromJson(response);
+    print('===== ${ship.florida.first.size}=====');
+    // print('Listaaa ========== $_items==========');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cliente'),
-      ),
-      // body: Container(),
-      body: ListView.builder(
-        itemCount: barcosList.length,
-        itemBuilder: (context, index) {
-          return Row(
-            children: [
-              Text(barcosList[index].tipo),
-              const SizedBox(
-                width: 40,
-              ),
-              Text(barcosList[index].precio),
-            ],
-          );
-        },
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Cliente'),
+        ),
+        // body: Container(),
+        body: _body()
+        // ListView.builder(
+        //   itemCount: barcosList.length,
+        //   itemBuilder: (context, index) {
+        //     return Row(
+        //       children: [
+        //         Text(barcosList[index].tipo),
+        //         const SizedBox(
+        //           width: 40,
+        //         ),
+        //         Text(barcosList[index].precio),
+        //       ],
+        //     );
+        //   },
+        // ),
+        );
   }
 
   Widget _body() {
@@ -53,11 +65,7 @@ class _ClientScreenState extends State<ClientScreen> {
         _field('Precio del barco', barcoController),
         const Text('Precio'),
         ElevatedButton(
-          onPressed: () => setState(() {
-            precio = double.parse(priceController.text);
-            grua = double.parse(gruaController.text);
-            barco = double.parse(barcoController.text);
-          }),
+          onPressed: () => readData(),
           child: const Text('Cotizar'),
         )
       ],
