@@ -1,19 +1,19 @@
 import 'package:buycar/data/datasource/local_datasource.dart';
-import 'package:buycar/domain/barco.dart';
+import 'package:buycar/domain/state.dart';
 import 'package:flutter/material.dart';
 
-class BarcosScreen extends StatefulWidget {
-  const BarcosScreen({super.key});
+class StatesScreen extends StatefulWidget {
+  const StatesScreen({super.key});
 
   @override
-  State<BarcosScreen> createState() => _BarcosScreenState();
+  State<StatesScreen> createState() => _StatesScreenState();
 }
 
-class _BarcosScreenState extends State<BarcosScreen> {
-  List<Ship> barcosList = [];
+class _StatesScreenState extends State<StatesScreen> {
+  List<States> statesList = [];
 
   Future<void> readData() async {
-    barcosList = await conectionFirebase();
+    statesList = await getStates();
     setState(() {});
   }
 
@@ -28,11 +28,11 @@ class _BarcosScreenState extends State<BarcosScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
-        children: barcosList
+        children: statesList
             .map(
-              (barco) => ListTile(
-                title: Text(barco.tipo),
-                onTap: () => Navigator.pop(context, barco),
+              (state) => ListTile(
+                title: Text(state.ciudad),
+                onTap: () => Navigator.pop(context, state),
               ),
             )
             .toList(),

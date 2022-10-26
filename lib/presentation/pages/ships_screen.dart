@@ -2,18 +2,18 @@ import 'package:buycar/data/datasource/local_datasource.dart';
 import 'package:buycar/domain/barco.dart';
 import 'package:flutter/material.dart';
 
-class BarcosScreen extends StatefulWidget {
-  const BarcosScreen({super.key});
+class ShipsScreen extends StatefulWidget {
+  const ShipsScreen({super.key});
 
   @override
-  State<BarcosScreen> createState() => _BarcosScreenState();
+  State<ShipsScreen> createState() => _ShipsScreenState();
 }
 
-class _BarcosScreenState extends State<BarcosScreen> {
+class _ShipsScreenState extends State<ShipsScreen> {
   List<Ship> barcosList = [];
 
   Future<void> readData() async {
-    barcosList = await conectionFirebase();
+    barcosList = await getShips();
     setState(() {});
   }
 

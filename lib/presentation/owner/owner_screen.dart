@@ -1,4 +1,7 @@
+import 'package:buycar/data/datasource/local_datasource.dart';
 import 'package:buycar/domain/barco.dart';
+import 'package:buycar/domain/port.dart';
+import 'package:buycar/domain/state.dart';
 import 'package:buycar/presentation/widgets/list_tile_custom.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +13,10 @@ class OwnerScreen extends StatefulWidget {
 }
 
 class _OwnerScreenState extends State<OwnerScreen> {
- //Variables para obtener los datos
+  //Variables para obtener los datos
   Ship ship = Ship(tipo: '', precio: '');
-  //Port port = Port()
-  //State state = state()
+  Port port = Port(puerto: '');
+  States state = States(ciudad: '', precio: '');
 
   //Variables para calcular
   double precioBarco = 0;
@@ -45,12 +48,21 @@ class _OwnerScreenState extends State<OwnerScreen> {
         ),
         ListTileCustom(
           title: 'Estado',
-          onTap: () => Navigator.pushNamed(context, '/states'),
-          subTitle: 'si',
+          onTap: () => Navigator.pushNamed(context, '/states').then(
+            (value) => setState(
+              () => state = value! as States,
+            ),
+          ),
+          subTitle: state.ciudad,
         ),
         const Text('Precio'),
         ElevatedButton(
-          onPressed: () => print('Cotizando...'),
+          onPressed: () {
+            print('Cotizando...');
+            // getShips();
+            getPorts();
+            getStates();
+          },
           child: const Text('Cotizar'),
         )
       ],
