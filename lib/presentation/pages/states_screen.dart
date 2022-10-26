@@ -10,13 +10,11 @@ class BarcosScreen extends StatefulWidget {
 }
 
 class _BarcosScreenState extends State<BarcosScreen> {
-  List<Barco> barcosList = [];
+  List<Ship> barcosList = [];
 
   Future<void> readData() async {
     barcosList = await conectionFirebase();
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   @override

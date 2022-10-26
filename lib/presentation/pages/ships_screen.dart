@@ -10,13 +10,11 @@ class BarcosScreen extends StatefulWidget {
 }
 
 class _BarcosScreenState extends State<BarcosScreen> {
-  List<Barco> barcosList = [];
+  List<Ship> barcosList = [];
 
   Future<void> readData() async {
     barcosList = await conectionFirebase();
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   @override
@@ -28,11 +26,14 @@ class _BarcosScreenState extends State<BarcosScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Barco'),
+      ),
       body: ListView(
         children: barcosList
             .map(
               (barco) => ListTile(
+                leading: const Icon(Icons.anchor_rounded),
                 title: Text(barco.tipo),
                 onTap: () => Navigator.pop(context, barco),
               ),

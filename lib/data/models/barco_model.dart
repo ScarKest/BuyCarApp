@@ -1,6 +1,6 @@
 import 'package:buycar/domain/barco.dart';
 
-class BarcoModel extends Barco {
+class BarcoModel extends Ship {
   BarcoModel({
     required super.tipo,
     required super.precio,
@@ -13,9 +13,6 @@ class BarcoModel extends Barco {
         );
 
   Map<String, dynamic> toJson() {
-    return {
-      'tipo':tipo,
-      'precio': precio
-    };
+    return {'tipo': tipo, 'precio': precio};
   }
 }

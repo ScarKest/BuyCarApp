@@ -11,11 +11,13 @@ class ClientScreen extends StatefulWidget {
 
 class _ClientScreenState extends State<ClientScreen> {
   //Variables para obtener los datos
-  Barco ship = Barco(tipo: '', precio: '');
+  Ship ship = Ship(tipo: '', precio: '');
+  //Port port = Port()
+  //State state = state()
 
   //Variables para calcular
   double precioBarco = 0;
-  double grua = 0;
+  double precioGrua = 0;
   double precio = 0;
 
   @override
@@ -36,7 +38,7 @@ class _ClientScreenState extends State<ClientScreen> {
           title: 'Tipo de Carro',
           onTap: () => Navigator.pushNamed(context, '/ships').then(
             (value) => setState(
-              () => ship = value! as Barco,
+              () => ship = value! as Ship,
             ),
           ),
           subTitle: ship.tipo,
