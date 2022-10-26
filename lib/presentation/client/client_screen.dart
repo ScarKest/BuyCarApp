@@ -1,5 +1,5 @@
-import 'package:buycar/data/datasource/local_datasource.dart';
 import 'package:buycar/domain/barco.dart';
+import 'package:buycar/presentation/widgets/list_tile_custom.dart';
 import 'package:flutter/material.dart';
 
 class ClientScreen extends StatefulWidget {
@@ -10,15 +10,13 @@ class ClientScreen extends StatefulWidget {
 }
 
 class _ClientScreenState extends State<ClientScreen> {
-  List<Barco> barcosList = [];
-  //Controladores de texto
-  TextEditingController priceController = TextEditingController();
-  TextEditingController gruaController = TextEditingController();
-  TextEditingController barcoController = TextEditingController();
+  //Variables para obtener los datos
+  Barco ship = Barco(tipo: '', precio: '');
+
   //Variables para calcular
-  double precio = 0;
+  double precioBarco = 0;
   double grua = 0;
-  double barco = 0;
+  double precio = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +24,7 @@ class _ClientScreenState extends State<ClientScreen> {
       appBar: AppBar(
         title: const Text('Cliente'),
       ),
-      // body: Container(),
-      body: ListView.builder(
-        itemCount: barcosList.length,
-        itemBuilder: (context, index) {
-          return Row(
-            children: [
-              Text(barcosList[index].tipo),
-              const SizedBox(
-                width: 40,
-              ),
-              Text(barcosList[index].precio),
-            ],
-          );
-        },
-      ),
+      body: _body(),
     );
   }
 
@@ -48,33 +32,25 @@ class _ClientScreenState extends State<ClientScreen> {
     return ListView(
       padding: const EdgeInsets.all(10),
       children: [
-        _field('Precio del carro', priceController),
-        _field('Precio de la Grua', gruaController),
-        _field('Precio del barco', barcoController),
+        ListTileCustom(
+          title: 'Tipo de Carro',
+          onTap: () => Navigator.pushNamed(context, '/ships').then(
+            (value) => setState(
+              () => ship = value! as Barco,
+            ),
+          ),
+          subTitle: ship.tipo,
+        ),
+        ListTileCustom(
+          title: 'Estado',
+          onTap: () => Navigator.pushNamed(context, '/states'),
+          subTitle: 'si',
+        ),
         const Text('Precio'),
         ElevatedButton(
-          onPressed: () => setState(() {
-            precio = double.parse(priceController.text);
-            grua = double.parse(gruaController.text);
-            barco = double.parse(barcoController.text);
-          }),
+          onPressed: () => print('Cotizando...'),
           child: const Text('Cotizar'),
         )
-      ],
-    );
-  }
-
-  Widget _field(String title, TextEditingController _controller) {
-    return Row(
-      children: [
-        Text(title, style: const TextStyle(fontSize: 30)),
-        const SizedBox(width: 10),
-        SizedBox(
-          width: 100,
-          child: TextField(
-            controller: _controller,
-          ),
-        ),
       ],
     );
   }

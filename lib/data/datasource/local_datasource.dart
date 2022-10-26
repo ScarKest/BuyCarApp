@@ -13,6 +13,5 @@ Future<List<Barco>> conectionFirebase() async {
   for (final barco in barcos.docs) {
     response.add(barco.data());
   }
-  print('Lista de barcos ${response[1].tipo}');
   return response;
 }
