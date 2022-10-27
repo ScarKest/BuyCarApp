@@ -20,6 +20,7 @@ class _OwnerScreenState extends State<OwnerScreen> {
   Port port = Port(puerto: '');
   UsaState state = UsaState(estado: '');
   List<UsaState> states = [];
+  List<City> cities = [];
   City city = City(ciudad: '', precio: 0);
 
   //Variables para calcular
@@ -30,6 +31,11 @@ class _OwnerScreenState extends State<OwnerScreen> {
   Future<List<UsaState>> _getState(String port) {
     setState(() {});
     return getStates(port);
+  }
+
+  Future<List<City>> _getCities(String port, String state) {
+    setState(() {});
+    return getCities(port, state);
   }
 
   @override
@@ -80,12 +86,14 @@ class _OwnerScreenState extends State<OwnerScreen> {
         ),
         ListTileCustom(
           title: 'Ciudad',
-          onTap: () =>
-              Navigator.pushNamed(context, '/cities', arguments: state).then(
-            (value) => setState(
-              () => city = value! as City,
-            ),
-          ),
+          onTap: ()async {
+            cities = await _getCities('California','California');
+            await Navigator.pushNamed(context, '/cities', arguments: state).then(
+              (value) => setState(
+                () => city = value! as City,
+              ),
+            );
+          },
           subTitle: city.ciudad,
         ),
         const Text('Precio'),

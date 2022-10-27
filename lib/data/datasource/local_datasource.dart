@@ -51,12 +51,11 @@ Future<List<UsaState>> getStates(String port) async {
   return response;
 }
 
-Future<List<City>> getCities() async {
+Future<List<City>> getCities(String port,String state) async {
   final response = <City>[];
   final collectionReference = FirebaseFirestore.instance
-      // .collection('Arizona')
-      .collection('california')
-      .doc('California')
+      .collection(port)
+      .doc(state)
       .collection('Ciudades')
       .withConverter<CityModel>(
         fromFirestore: (snap, _) => CityModel.fromJson(snap.data()!),
@@ -65,7 +64,6 @@ Future<List<City>> getCities() async {
   final states = await collectionReference.get();
   for (final state in states.docs) {
     response.add(state.data());
-    print('=====Ciudad: ${state.data().ciudad}=====');
   }
   return response;
 }
