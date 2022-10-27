@@ -1,4 +1,3 @@
-import 'package:buycar/domain/port.dart';
 import 'package:buycar/domain/state.dart';
 
 class UsaStateModel extends UsaState {

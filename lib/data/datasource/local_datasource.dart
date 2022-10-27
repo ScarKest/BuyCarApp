@@ -19,7 +19,6 @@ Future<List<Ship>> getShips() async {
   for (final barco in barcos.docs) {
     response.add(barco.data());
   }
-  print('=====Barcos: ${response.last.tipo}=====');
   return response;
 }
 
@@ -33,27 +32,21 @@ Future<List<Port>> getPorts() async {
   final ports = await collectionReference.get();
   for (final port in ports.docs) {
     response.add(port.data());
-    print('===${response.last.puerto}');
   }
 
   return response;
 }
 
-Future<List<UsaState>> getStates(String port, String state) async {
+Future<List<UsaState>> getStates(String port) async {
   final response = <UsaState>[];
-  final collectionReference = FirebaseFirestore.instance
-      // .collection('Arizona')
-      .collection(port)
-      .doc(state)
-      .collection('Ciudades')
-      .withConverter<UsaStateModel>(
-        fromFirestore: (snap, _) => UsaStateModel.fromJson(snap.data()!),
-        toFirestore: (state, _) => state.toJson(),
-      );
+  final collectionReference =
+      FirebaseFirestore.instance.collection(port).withConverter<UsaStateModel>(
+            fromFirestore: (snap, _) => UsaStateModel.fromJson(snap.data()!),
+            toFirestore: (state, _) => state.toJson(),
+          );
   final states = await collectionReference.get();
   for (final state in states.docs) {
-    response.add(state.data());
-    print('=====Estado: ${state.data().estado}=====');
+    response.add(UsaState(estado: state.id));
   }
   return response;
 }

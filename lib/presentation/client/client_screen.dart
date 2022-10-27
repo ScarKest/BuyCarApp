@@ -50,7 +50,7 @@ class _ClientScreenState extends State<ClientScreen> {
         ),
         const Text('Precio'),
         ElevatedButton(
-          onPressed: () => print('Cotizando...'),
+          onPressed: () {}, //print('Cotizando...'),
           child: const Text('Cotizar'),
         )
       ],

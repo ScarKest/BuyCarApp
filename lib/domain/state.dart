@@ -1,4 +1,3 @@
-import 'package:buycar/domain/city.dart';
 
 class UsaState {
   UsaState({
