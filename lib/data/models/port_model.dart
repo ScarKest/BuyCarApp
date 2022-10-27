@@ -12,7 +12,7 @@ class PortModel extends Port {
 
   Map<String, dynamic> toJson() {
     return {
-      'Ciudad': puerto,
+      'Puerto': puerto,
     };
   }
 }

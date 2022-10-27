@@ -10,10 +10,10 @@ class StatesScreen extends StatefulWidget {
 }
 
 class _StatesScreenState extends State<StatesScreen> {
-  List<States> statesList = [];
+  List<UsaState> statesList = [];
 
   Future<void> readData() async {
-    statesList = await getStates();
+    statesList = await getStates('California','Arizona');
     setState(() {});
   }
 
@@ -26,12 +26,12 @@ class _StatesScreenState extends State<StatesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text('Estado'),),
       body: ListView(
         children: statesList
             .map(
               (state) => ListTile(
-                title: Text(state.ciudad),
+                title: Text(state.estado),
                 onTap: () => Navigator.pop(context, state),
               ),
             )

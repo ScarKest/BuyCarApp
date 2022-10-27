@@ -10,7 +10,7 @@ class PortsScreen extends StatefulWidget {
 }
 
 class _PortsScreenState extends State<PortsScreen> {
-List<Port> portsList = [];
+  List<Port> portsList = [];
 
   Future<void> readData() async {
     portsList = await getPorts();
@@ -26,7 +26,7 @@ List<Port> portsList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text('Puerto'),),
       body: ListView(
         children: portsList
             .map(

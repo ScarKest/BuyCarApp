@@ -1,6 +1,7 @@
 import 'package:buycar/presentation/client/client_screen.dart';
 import 'package:buycar/presentation/home/home_screen.dart';
 import 'package:buycar/presentation/owner/owner_screen.dart';
+import 'package:buycar/presentation/pages/cities_screen.dart';
 import 'package:buycar/presentation/pages/ports_screen.dart';
 import 'package:buycar/presentation/pages/ships_screen.dart';
 import 'package:buycar/presentation/pages/states_screen.dart';
@@ -25,6 +26,7 @@ class App extends StatelessWidget {
         '/ships': (context) => const ShipsScreen(),
         '/ports': (context) => const PortsScreen(),
         '/states': (context) => const StatesScreen(),
+        '/cities': (context) => const CitiesScreen(),
       },
     );
   }

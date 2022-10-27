@@ -1,11 +1,9 @@
 import 'package:buycar/domain/city.dart';
 
-class States {
-  States({
-    required this.ciudad,
-    required this.precio,
+class UsaState {
+  UsaState({
+    required this.estado,
   });
 
-  final String ciudad;
-  final String precio;
+  final String estado;
 }

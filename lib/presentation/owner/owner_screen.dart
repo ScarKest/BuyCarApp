@@ -1,5 +1,6 @@
 import 'package:buycar/data/datasource/local_datasource.dart';
 import 'package:buycar/domain/barco.dart';
+import 'package:buycar/domain/city.dart';
 import 'package:buycar/domain/port.dart';
 import 'package:buycar/domain/state.dart';
 import 'package:buycar/presentation/widgets/list_tile_custom.dart';
@@ -16,7 +17,8 @@ class _OwnerScreenState extends State<OwnerScreen> {
   //Variables para obtener los datos
   Ship ship = Ship(tipo: '', precio: '');
   Port port = Port(puerto: '');
-  States state = States(ciudad: '', precio: '');
+  UsaState state = UsaState(estado: '');
+  City city = City(ciudad: '', precio: 0);
 
   //Variables para calcular
   double precioBarco = 0;
@@ -47,13 +49,31 @@ class _OwnerScreenState extends State<OwnerScreen> {
           subTitle: ship.tipo,
         ),
         ListTileCustom(
+          title: 'Puerto',
+          onTap: () => Navigator.pushNamed(context, '/ports').then(
+            (value) => setState(
+              () => port = value! as Port,
+            ),
+          ),
+          subTitle: port.puerto,
+        ),
+        ListTileCustom(
           title: 'Estado',
           onTap: () => Navigator.pushNamed(context, '/states').then(
             (value) => setState(
-              () => state = value! as States,
+              () => state = value! as UsaState,
             ),
           ),
-          subTitle: state.ciudad,
+          subTitle: state.estado,
+        ),
+        ListTileCustom(
+          title: 'Ciudad',
+          onTap: () => Navigator.pushNamed(context, '/cities').then(
+            (value) => setState(
+              () => city = value! as City,
+            ),
+          ),
+          subTitle: city.ciudad,
         ),
         const Text('Precio'),
         ElevatedButton(
@@ -61,7 +81,7 @@ class _OwnerScreenState extends State<OwnerScreen> {
             print('Cotizando...');
             // getShips();
             getPorts();
-            getStates();
+            // getStates();
           },
           child: const Text('Cotizar'),
         )

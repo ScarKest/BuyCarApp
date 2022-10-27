@@ -1,19 +1,17 @@
 import 'package:buycar/domain/port.dart';
 import 'package:buycar/domain/state.dart';
 
-class StatesModel extends States {
-  StatesModel({
-    required super.ciudad,
-    required super.precio,
+class UsaStateModel extends UsaState {
+  UsaStateModel({
+    required super.estado,
   });
 
-  StatesModel.fromJson(Map<String, dynamic> json)
+  UsaStateModel.fromJson(Map<String, dynamic> json)
       : this(
-          ciudad: json['Ciudad'].toString(),
-          precio: json['Precio'].toString(),
+          estado: json['Estado'].toString(),
         );
 
   Map<String, dynamic> toJson() {
-    return {'precio': precio};
+    return {'Estado': estado};
   }
 }
