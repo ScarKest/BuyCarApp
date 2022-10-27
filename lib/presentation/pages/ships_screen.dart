@@ -35,6 +35,7 @@ class _ShipsScreenState extends State<ShipsScreen> {
               (barco) => ListTile(
                 leading: const Icon(Icons.anchor_rounded),
                 title: Text(barco.tipo),
+                trailing: Text(barco.precio),
                 onTap: () => Navigator.pop(context, barco),
               ),
             )

@@ -27,6 +27,7 @@ class _OwnerScreenState extends State<OwnerScreen> {
   double precioBarco = 0;
   double precioGrua = 0;
   double precio = 0;
+  double total = 0;
 
   Future<List<UsaState>> _getState(String port) {
     setState(() {});
@@ -42,7 +43,7 @@ class _OwnerScreenState extends State<OwnerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cliente'),
+        title: const Text('Dueño'),
       ),
       body: _body(),
     );
@@ -86,23 +87,25 @@ class _OwnerScreenState extends State<OwnerScreen> {
         ),
         ListTileCustom(
           title: 'Ciudad',
-          onTap: ()async {
-            cities = await _getCities('California','California');
-            await Navigator.pushNamed(context, '/cities', arguments: state).then(
-              (value) => setState(
-                () => city = value! as City,
-              ),
+          onTap: () async {
+            cities = await _getCities(port.puerto.toLowerCase(), state.estado);
+            await Navigator.pushNamed(context, '/cities', arguments: cities)
+                .then(
+              (value) => setState(() {
+                city = value! as City;
+                precioGrua = double.parse(city.precio.toString());
+              }),
             );
           },
           subTitle: city.ciudad,
         ),
-        const Text('Precio'),
         ElevatedButton(
-          onPressed: () {
-            setState(() {});
-          },
+          onPressed: () => setState(
+            () => total = precioBarco + precioGrua,
+          ),
           child: const Text('Cotizar'),
-        )
+        ),
+        Text('Precio $total'),
       ],
     );
   }

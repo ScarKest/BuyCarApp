@@ -1,4 +1,4 @@
-import 'package:buycar/data/datasource/local_datasource.dart';
+// ignore_for_file: cast_nullable_to_non_nullable
 import 'package:buycar/domain/city.dart';
 import 'package:flutter/material.dart';
 
@@ -11,20 +11,9 @@ class CitiesScreen extends StatefulWidget {
 
 class _CitiesScreenState extends State<CitiesScreen> {
   List<City> citiesList = [];
-
-  Future<void> readData() async {
-    citiesList = await getCities('california', 'Arizona');
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    readData();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    citiesList = ModalRoute.of(context)!.settings.arguments as List<City>;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ciudades'),
