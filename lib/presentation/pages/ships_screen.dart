@@ -25,6 +25,7 @@ class _ShipsScreenState extends State<ShipsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Barco'),
@@ -35,7 +36,9 @@ class _ShipsScreenState extends State<ShipsScreen> {
               (barco) => ListTile(
                 leading: const Icon(Icons.directions_boat_outlined),
                 title: Text(barco.tipo),
-                trailing: Text('\$${barco.precio}'),
+                trailing: (user == 'Owner')
+                    ? Text('\$${barco.precio}')
+                    : Text('\$${barco.precio + 50 }'),
                 onTap: () => Navigator.pop(context, barco),
               ),
             )

@@ -5,5 +5,5 @@ class Ship {
   });
 
   final String tipo;
-  final String precio;
+  final int precio;
 }

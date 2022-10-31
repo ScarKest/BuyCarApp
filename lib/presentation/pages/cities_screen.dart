@@ -13,7 +13,10 @@ class _CitiesScreenState extends State<CitiesScreen> {
   List<City> citiesList = [];
   @override
   Widget build(BuildContext context) {
-    citiesList = ModalRoute.of(context)!.settings.arguments as List<City>;
+    final response =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    citiesList = response['Cities'] as List<City>;
+    final user = response['User'];
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ciudades'),
@@ -24,8 +27,18 @@ class _CitiesScreenState extends State<CitiesScreen> {
               (city) => ListTile(
                 leading: const Icon(Icons.place),
                 title: Text(city.ciudad),
-                trailing: Text('\$${city.precio}'),
-                onTap: () => Navigator.pop(context, city),
+                trailing: (user == 'Owner')
+                    ? Text('\$${city.precio}')
+                    : Text('\$${city.precio + 50}'),
+                onTap: () {
+                  final cityClient = (user == 'Owner')
+                      ? city
+                      : City(
+                          ciudad: city.ciudad,
+                          precio: city.precio + 50,
+                        );
+                  Navigator.pop(context, cityClient);
+                },
               ),
             )
             .toList(),

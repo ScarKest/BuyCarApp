@@ -9,10 +9,13 @@ class BarcoModel extends Ship {
   BarcoModel.fromJson(Map<String, dynamic> json)
       : this(
           tipo: json['tipo'].toString(),
-          precio: json['precio'].toString(),
+          precio: int.parse(json['precio'].toString()),
         );
 
   Map<String, dynamic> toJson() {
-    return {'tipo': tipo, 'precio': precio};
+    return {
+      'tipo': tipo,
+      'precio': precio,
+    };
   }
 }

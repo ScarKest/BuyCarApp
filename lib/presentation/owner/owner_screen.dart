@@ -16,7 +16,7 @@ class OwnerScreen extends StatefulWidget {
 
 class _OwnerScreenState extends State<OwnerScreen> {
   //Variables para obtener los datos
-  Ship ship = Ship(tipo: '', precio: '');
+  Ship ship = Ship(tipo: '', precio: 0);
   Port port = Port(puerto: '');
   UsaState state = UsaState(estado: '');
   List<UsaState> states = [];
@@ -24,10 +24,7 @@ class _OwnerScreenState extends State<OwnerScreen> {
   City city = City(ciudad: '', precio: 0);
 
   //Variables para calcular
-  double precioBarco = 0;
-  double precioGrua = 0;
-  double precio = 0;
-  double total = 0;
+  int? total = 0;
 
   Future<List<UsaState>> _getState(String port) {
     setState(() {});
@@ -41,34 +38,31 @@ class _OwnerScreenState extends State<OwnerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dueño'),
       ),
-      body: _body(),
+      body: _body(user.toString()),
+      bottomSheet: _customBottomSheet(),
     );
   }
 
-  Widget _body() {
+  Widget _body(String user) {
     return ListView(
       padding: const EdgeInsets.all(10),
       children: [
         ListTileCustom(
           title: 'Tipo de Carro',
           onTap: () => Navigator.pushNamed(context, '/ships').then(
-            (value) => setState(() {
-              ship = value! as Ship;
-              precioBarco = double.parse(ship.precio);
-            }),
+            (value) => setState(() => ship = value! as Ship),
           ),
           subTitle: ship.tipo,
         ),
         ListTileCustom(
           title: 'Puerto',
           onTap: () => Navigator.pushNamed(context, '/ports').then(
-            (value) => setState(
-              () => port = value! as Port,
-            ),
+            (value) => setState(() => port = value! as Port),
           ),
           subTitle: port.puerto,
         ),
@@ -79,15 +73,11 @@ class _OwnerScreenState extends State<OwnerScreen> {
               states = await _getState(port.puerto.toLowerCase());
               await Navigator.pushNamed(context, '/states', arguments: states)
                   .then(
-                (value) => setState(() {
-                  state = value! as UsaState;
-                }),
+                (value) => setState(() => state = value! as UsaState),
               );
-            }else {
+            } else {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Seleccione un puerto primero'),
-                ),
+                const SnackBar(content: Text('Seleccione un puerto primero')),
               );
             }
           },
@@ -99,12 +89,15 @@ class _OwnerScreenState extends State<OwnerScreen> {
             if (state.estado.isNotEmpty) {
               cities =
                   await _getCities(port.puerto.toLowerCase(), state.estado);
-              await Navigator.pushNamed(context, '/cities', arguments: cities)
-                  .then(
-                (value) => setState(() {
-                  city = value! as City;
-                  precioGrua = double.parse(city.precio.toString());
-                }),
+              await Navigator.pushNamed(
+                context,
+                '/cities',
+                arguments: {
+                  'Cities': cities,
+                  'User': user,
+                },
+              ).then(
+                (value) => setState(() => city = value! as City),
               );
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -118,12 +111,28 @@ class _OwnerScreenState extends State<OwnerScreen> {
         ),
         ElevatedButton(
           onPressed: () => setState(
-            () => total = precioBarco + precioGrua,
+            () => total = ship.precio + city.precio,
           ),
           child: const Text('Cotizar'),
         ),
-        Text('Precio $total'),
       ],
+    );
+  }
+
+  Widget _customBottomSheet() {
+    return Container(
+      alignment: Alignment.center,
+      width: double.infinity,
+      height: 150,
+      color: Colors.lightBlue,
+      child: Text(
+        'Precio \$$total',
+        style: const TextStyle(
+          fontSize: 35,
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }

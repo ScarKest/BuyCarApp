@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _button(
-            onPressed: () => Navigator.pushNamed(context, '/client'),
+            onPressed: () => Navigator.pushNamed(context, '/client', arguments: 'Client'),
             title: 'Cliente',
             image: 'assets/images/client.png',
           ),
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onChanged: (_) {},
           onCompleted: (value) => (value != '1234')
               ? passwordError()
-              : Navigator.pushNamed(context, '/owner'),
+              : Navigator.pushNamed(context, '/owner', arguments: 'Owner'),
         ),
       ),
     );
