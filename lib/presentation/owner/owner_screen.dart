@@ -75,27 +75,44 @@ class _OwnerScreenState extends State<OwnerScreen> {
         ListTileCustom(
           title: 'Estado',
           onTap: () async {
-            states = await _getState(port.puerto.toLowerCase());
-            await Navigator.pushNamed(context, '/states', arguments: states)
-                .then(
-              (value) => setState(() {
-                state = value! as UsaState;
-              }),
-            );
+            if (port.puerto.isNotEmpty) {
+              states = await _getState(port.puerto.toLowerCase());
+              await Navigator.pushNamed(context, '/states', arguments: states)
+                  .then(
+                (value) => setState(() {
+                  state = value! as UsaState;
+                }),
+              );
+            }else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Seleccione un puerto primero'),
+                ),
+              );
+            }
           },
           subTitle: state.estado,
         ),
         ListTileCustom(
           title: 'Ciudad',
           onTap: () async {
-            cities = await _getCities(port.puerto.toLowerCase(), state.estado);
-            await Navigator.pushNamed(context, '/cities', arguments: cities)
-                .then(
-              (value) => setState(() {
-                city = value! as City;
-                precioGrua = double.parse(city.precio.toString());
-              }),
-            );
+            if (state.estado.isNotEmpty) {
+              cities =
+                  await _getCities(port.puerto.toLowerCase(), state.estado);
+              await Navigator.pushNamed(context, '/cities', arguments: cities)
+                  .then(
+                (value) => setState(() {
+                  city = value! as City;
+                  precioGrua = double.parse(city.precio.toString());
+                }),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Seleccione un estado primero'),
+                ),
+              );
+            }
           },
           subTitle: city.ciudad,
         ),

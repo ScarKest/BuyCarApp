@@ -22,6 +22,7 @@ class _StatesScreenState extends State<StatesScreen> {
         children: statesList
             .map(
               (state) => ListTile(
+                leading: const Icon(Icons.map),
                 title: Text(state.estado),
                 onTap: () => Navigator.pop(context, state),
               ),

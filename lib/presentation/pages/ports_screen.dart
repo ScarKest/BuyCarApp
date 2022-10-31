@@ -31,6 +31,7 @@ class _PortsScreenState extends State<PortsScreen> {
         children: portsList
             .map(
               (port) => ListTile(
+                leading: const Icon(Icons.anchor_rounded),
                 title: Text(port.puerto),
                 onTap: () => Navigator.pop(context, port),
               ),

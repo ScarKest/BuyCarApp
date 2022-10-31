@@ -22,8 +22,9 @@ class _CitiesScreenState extends State<CitiesScreen> {
         children: citiesList
             .map(
               (city) => ListTile(
+                leading: const Icon(Icons.place),
                 title: Text(city.ciudad),
-                trailing: Text(city.precio.toString()),
+                trailing: Text('\$${city.precio}'),
                 onTap: () => Navigator.pop(context, city),
               ),
             )

@@ -33,9 +33,9 @@ class _ShipsScreenState extends State<ShipsScreen> {
         children: barcosList
             .map(
               (barco) => ListTile(
-                leading: const Icon(Icons.anchor_rounded),
+                leading: const Icon(Icons.directions_boat_outlined),
                 title: Text(barco.tipo),
-                trailing: Text(barco.precio),
+                trailing: Text('\$${barco.precio}'),
                 onTap: () => Navigator.pop(context, barco),
               ),
             )

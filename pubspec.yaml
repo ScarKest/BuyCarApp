@@ -17,6 +17,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  pin_code_fields: ^7.4.0
 
 dev_dependencies:
   bloc_test: ^9.0.3
