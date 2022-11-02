@@ -4,6 +4,7 @@ import 'package:buycar/domain/barco.dart';
 import 'package:buycar/domain/city.dart';
 import 'package:buycar/domain/port.dart';
 import 'package:buycar/domain/state.dart';
+import 'package:buycar/presentation/widgets/invoice_widget.dart';
 import 'package:buycar/presentation/widgets/list_tile_custom.dart';
 import 'package:flutter/material.dart';
 
@@ -52,6 +53,7 @@ class _OwnerScreenState extends State<OwnerScreen> {
     return ListView(
       padding: const EdgeInsets.all(10),
       children: [
+        InvoiceWidget(user: user),
         ListTileCustom(
           title: 'Tipo de Carro',
           onTap: () => Navigator.pushNamed(context, '/ships').then(
@@ -134,5 +136,41 @@ class _OwnerScreenState extends State<OwnerScreen> {
         ),
       ),
     );
+  }
+
+  List<Widget> invoiceCopart() {
+    return [
+      const TextField(
+        decoration: InputDecoration(
+          icon: Icon(Icons.car_crash),
+          label: Text('Precio de Vehiculo'),
+          // hintText: 'Solo',
+        ),
+      ),
+      const TextField(
+        decoration: InputDecoration(
+          icon: Icon(Icons.eco_outlined),
+          label: Text('Enviroment Fee'),
+          hintText: r'$10',
+        ),
+        readOnly: true,
+      ),
+      const TextField(
+        decoration: InputDecoration(
+          icon: Icon(Icons.money),
+          label: Text('Virtual Fee'),
+          hintText: r'$10',
+        ),
+        readOnly: true,
+      ),
+      const TextField(
+        decoration: InputDecoration(
+          icon: Icon(Icons.car_crash),
+          label: Text('Buyer Fee'),
+          hintText: r'$10',
+        ),
+        readOnly: true,
+      ),
+    ];
   }
 }
