@@ -1,0 +1,40 @@
+{
+    "project_info": {
+      "project_number": "687121477978",
+      "firebase_url": "https://scarkest-personal-projects-default-rtdb.firebaseio.com",
+      "project_id": "scarkest-personal-projects",
+      "storage_bucket": "scarkest-personal-projects.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:687121477978:android:a8ab52d89bb7284d3ac363",
+          "android_client_info": {
+            "package_name": "com.scarkest.buycar"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "687121477978-jcqjbi71atkrp154r9t8ubtgpr5nmeqv.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyC-B_0y1Z3x2qZVy1Y-67u7L6tZ9vOh4co"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "687121477978-jcqjbi71atkrp154r9t8ubtgpr5nmeqv.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
