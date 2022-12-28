@@ -1,19 +1,9 @@
-class Barco {
-    Barco({
-        required this.florida,
-        required this.california,
-    });
+class Ship {
+  Ship({
+    required this.tipo,
+    required this.precio,
+  });
 
-    final List<Port> florida;
-    final List<Port> california;
-}
-
-class Port {
-    Port({
-        required this.size,
-        required this.price,
-    });
-
-    final String size;
-    final int price;
+  final String tipo;
+  final int precio;
 }

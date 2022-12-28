@@ -7,14 +7,16 @@ import 'package:buycar/domain/state.dart';
 import 'package:buycar/presentation/widgets/list_tile_custom.dart';
 import 'package:flutter/material.dart';
 
-class ClientScreen extends StatefulWidget {
-  const ClientScreen({super.key});
+class ShipWidget extends StatefulWidget {
+  const ShipWidget({super.key, required this.user});
+
+  final String user;
 
   @override
-  State<ClientScreen> createState() => _ClientScreenState();
+  State<ShipWidget> createState() => _ShipWidgetState();
 }
 
-class _ClientScreenState extends State<ClientScreen> {
+class _ShipWidgetState extends State<ShipWidget> {
   //Variables para obtener los datos
   Ship ship = Ship(tipo: '', precio: 0);
   Port port = Port(puerto: '');
@@ -38,26 +40,15 @@ class _ClientScreenState extends State<ClientScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = ModalRoute.of(context)!.settings.arguments;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cliente'),
-      ),
-      body: _body(user.toString()),
-      bottomSheet: _customBottomSheet(),
-    );
-  }
-
-  Widget _body(String user) {
     return ListView(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(20),
       children: [
         ListTileCustom(
           title: 'Tipo de Carro',
           onTap: () => Navigator.pushNamed(context, '/ships').then(
             (value) => setState(() => ship = value! as Ship),
           ),
-          subTitle: ship.tipo,
+          subTitle: '${ship.tipo} \$${ship.precio}',
         ),
         ListTileCustom(
           title: 'Puerto',
@@ -94,7 +85,7 @@ class _ClientScreenState extends State<ClientScreen> {
                 '/cities',
                 arguments: {
                   'Cities': cities,
-                  'User': user,
+                  'User': widget.user,
                 },
               ).then(
                 (value) => setState(() => city = value! as City),
@@ -107,7 +98,7 @@ class _ClientScreenState extends State<ClientScreen> {
               );
             }
           },
-          subTitle: city.ciudad,
+          subTitle: '${city.ciudad} \$${city.precio}',
         ),
         ElevatedButton(
           onPressed: () => setState(
@@ -115,24 +106,14 @@ class _ClientScreenState extends State<ClientScreen> {
           ),
           child: const Text('Cotizar'),
         ),
+        const SizedBox(height: 40),
+        Center(
+          child: Text(
+            'Total \$$total',
+            style: const TextStyle(fontSize: 35),
+          ),
+        )
       ],
-    );
-  }
-
-  Widget _customBottomSheet() {
-    return Container(
-      alignment: Alignment.center,
-      width: double.infinity,
-      height: 150,
-      color: Colors.lightBlue,
-      child: Text(
-        'Precio \$$total',
-        style: const TextStyle(
-          fontSize: 35,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
     );
   }
 }
