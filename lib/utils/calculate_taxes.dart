@@ -1,5 +1,4 @@
 // ignore_for_file: invariant_booleans
-
 int calculateBuyerFee(String user, int price) => (user == 'Owner')
     ? calculateBuyerFeeOwner(price)
     : calculateBuyerFeeClient(price);

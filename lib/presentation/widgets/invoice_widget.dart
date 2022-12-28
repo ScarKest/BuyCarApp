@@ -17,53 +17,54 @@ class _InvoiceWidgetState extends State<InvoiceWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          decoration: const InputDecoration(
-            icon: Icon(Icons.car_crash),
-            label: Text('Precio de Vehiculo'),
+    return Padding(
+      padding: const EdgeInsets.all(30),
+      child: Column(
+        children: [
+          TextField(
+            decoration: const InputDecoration(
+              icon: Icon(Icons.car_crash),
+              label: Text('Precio de Vehiculo'),
+            ),
+            onSubmitted: (value) {
+              setState(() {
+                buyerFee = calculateBuyerFee(widget.user, int.parse(value));
+                virtualFee = calculateVirtualFee(widget.user, int.parse(value));
+              });
+            },
           ),
-          onSubmitted: (value) {
-            setState(() {
-              buyerFee = calculateBuyerFee(widget.user, int.parse(value));
-              virtualFee = calculateVirtualFee(widget.user, int.parse(value));
-            });
-          },
-        ),
-        const TextField(
-          decoration: InputDecoration(
-            icon: Icon(Icons.eco_outlined),
-            label: Text('Enviroment Fee'),
-            hintText: r'$10',
+          const TextField(
+            decoration: InputDecoration(
+              icon: Icon(Icons.eco_outlined),
+              label: Text(r'Enviroment Fee $10'),
+            ),
+            enabled: false,
           ),
-          readOnly: true,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            icon: const Icon(Icons.money),
-            label: const Text('Virtual Fee'),
-            hintText: virtualFee.toString(),
+          TextField(
+            decoration: InputDecoration(
+              icon: const Icon(Icons.money),
+              label: Text('Virtual Fee ${virtualFee.toString()}'),
+            ),
+            enabled: false,
           ),
-          readOnly: true,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            icon: const Icon(Icons.car_crash),
-            label: const Text('Buyer Fee'),
-            hintText: buyerFee.toString(),
+          TextField(
+            decoration: InputDecoration(
+              icon: const Icon(Icons.car_crash),
+              label: const Text('Buyer Fee'),
+              hintText: buyerFee.toString(),
+            ),
+            readOnly: true,
           ),
-          readOnly: true,
-        ),
-        const TextField(
-          decoration: InputDecoration(
-            icon: Icon(Icons.car_crash),
-            label: Text('Gate'),
-            hintText: r'$79',
+          const TextField(
+            decoration: InputDecoration(
+              icon: Icon(Icons.car_crash),
+              label: Text('Gate'),
+              hintText: r'$79',
+            ),
+            readOnly: true,
           ),
-          readOnly: true,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
