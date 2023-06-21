@@ -1,6 +1,6 @@
 // ignore_for_file: cast_nullable_to_non_nullable
-
-import 'package:buycar/utils/calculate_taxes.dart';
+import 'package:buycar/utils/calculate_virtual_bid_fee.dart';
+import 'package:buycar/utils/clean_title/buyer_fee.dart';
 import 'package:flutter/material.dart';
 
 class InvoiceScreen extends StatefulWidget {
@@ -14,6 +14,9 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
   //Precios que varian segun precio
   int virtualFee = 0;
   int buyerFee = 0;
+  int enviromentFee = 10;
+  int gateFee = 79;
+  int totalPrice = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,45 +36,55 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
               ),
               onSubmitted: (value) {
                 setState(() {
-                  buyerFee = calculateBuyerFee(user, int.parse(value));
-                  virtualFee =
-                      calculateVirtualFee(user, int.parse(value));
+                  buyerFee =
+                      calculateBuyerFeeOwnerCTitle(int.parse(value), 'Secure');
+                  virtualFee = calculateVirtualFee(int.parse(value), 'PreBid');
+                  totalPrice =int.parse(value) + getTotalPrice(virtualFee, buyerFee, enviromentFee, gateFee);
                 });
               },
             ),
-            const TextField(
+            TextField(
               decoration: InputDecoration(
                 icon: Icon(Icons.eco_outlined),
-                label: Text(r'Enviroment Fee $10'),
+                label: Text('Enviroment Fee \$$enviromentFee'),
               ),
               enabled: false,
             ),
             TextField(
               decoration: InputDecoration(
                 icon: const Icon(Icons.money),
-                label: Text('Virtual Fee ${virtualFee.toString()}'),
+                label: Text('Virtual Fee \$${virtualFee.toString()}'),
               ),
               enabled: false,
             ),
             TextField(
               decoration: InputDecoration(
                 icon: const Icon(Icons.car_crash),
-                label: const Text('Buyer Fee'),
-                hintText: buyerFee.toString(),
+                label: Text('Buyer Fee \$${buyerFee.toString()}'),
               ),
-              readOnly: true,
+              enabled: false,
             ),
-            const TextField(
+            TextField(
               decoration: InputDecoration(
                 icon: Icon(Icons.car_crash),
-                label: Text('Gate'),
-                hintText: r'$79',
+                label: Text('Gate \$$gateFee'),
               ),
-              readOnly: true,
             ),
+            Container(
+              padding: EdgeInsets.all(50),
+              child: Text('Total: \$$totalPrice'),
+            )
           ],
         ),
       ),
     );
   }
+
+  int getTotalPrice(
+    int virtualFee,
+    int buyerFee,
+    int enviromentFee,
+    int gateFee,
+  ) =>
+      virtualFee + buyerFee + enviromentFee + gateFee;
 }
