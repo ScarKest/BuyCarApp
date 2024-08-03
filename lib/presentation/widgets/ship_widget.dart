@@ -112,7 +112,7 @@ class _ShipWidgetState extends State<ShipWidget> {
             'Total \$$total',
             style: const TextStyle(fontSize: 35),
           ),
-        )
+        ),
       ],
     );
   }

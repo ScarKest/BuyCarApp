@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: dialogPassword,
             title: 'Dueño',
             image: 'assets/images/owner.png',
-          )
+          ),
         ],
       ),
     );

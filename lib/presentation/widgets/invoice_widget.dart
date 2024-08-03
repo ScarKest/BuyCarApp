@@ -43,7 +43,7 @@ class _InvoiceWidgetState extends State<InvoiceWidget> {
           TextField(
             decoration: InputDecoration(
               icon: const Icon(Icons.money),
-              label: Text('Virtual Fee ${virtualFee.toString()}'),
+              label: Text('Virtual Fee $virtualFee'),
             ),
             enabled: false,
           ),
