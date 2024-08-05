@@ -6,6 +6,7 @@ packages:
     description:
       name: _fe_analyzer_shared
       sha256: "4897882604d919befd350648c7f91926a9d5de99e67b455bf0917cc2362f4bb8"
+
       url: "https://pub.dev"
     source: hosted
     version: "47.0.0"
@@ -22,6 +23,7 @@ packages:
     description:
       name: analyzer
       sha256: "690e335554a8385bc9d787117d9eb52c0c03ee207a607e593de3c9d71b1cfe80"
+
       url: "https://pub.dev"
     source: hosted
     version: "4.7.0"
@@ -102,6 +104,7 @@ packages:
     description:
       name: cloud_firestore_web
       sha256: "2d7339bf3f79adcdb123a88e908474478b060317332189bdd5dcb2d498952127"
+
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
@@ -118,6 +121,7 @@ packages:
     description:
       name: convert
       sha256: "0f08b14755d163f6e2134cb58222dd25ea2a2ee8a195e53983d57c075324d592"
+
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
