@@ -19,7 +19,7 @@ class App extends StatelessWidget {
           accentColor: const Color(0xFF13B9FF),
         ),
       ),
-      home: const HomeScreen(),
+      home: const HomeScreen1(),
       routes: {
         '/owner': (context) => const OwnerScreen(),
         '/client': (context) => const ClientScreen(),
