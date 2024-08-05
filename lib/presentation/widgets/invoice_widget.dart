@@ -29,7 +29,7 @@ class _InvoiceWidgetState extends State<InvoiceWidget> {
             onSubmitted: (value) {
               setState(() {
                 buyerFee = calculateBuyerFee(widget.user, int.parse(value));
-                virtualFee = calculateVirtualFee(widget.user, int.parse(value));
+                // virtualFee = calculateVirtualFee(widget.user, int.parse(value));
               });
             },
           ),
