@@ -1,5 +1,6 @@
-import 'package:buycar/presentation/widgets/invoice_widget.dart';
-import 'package:buycar/presentation/widgets/ship_widget.dart';
+// ignore_for_file: cast_nullable_to_non_nullable
+
+import 'package:buycar/presentation/widgets/list_tile_custom.dart';
 import 'package:flutter/material.dart';
 
 class OwnerScreen extends StatefulWidget {
@@ -24,19 +25,29 @@ class _OwnerScreenState extends State<OwnerScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Dueño'),
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.directions_car)),
-              Tab(icon: Icon(Icons.directions_boat)),
-              Tab(icon: Icon(Icons.money)),
-            ],
-          ),
         ),
-        body: TabBarView(
+        body: ListView(
           children: [
-            InvoiceWidget(user: user.toString()),
-            ShipWidget(user: user.toString()),
-            const Icon(Icons.directions_bike),
+            ListTileCustom(
+              title: 'Valores del Carro',
+              subTitle: 'Total $_total ',
+              onTap: () =>
+                  Navigator.pushNamed(context, '/invoice', arguments: user),
+            ),
+            ListTileCustom(
+              title: 'Naviera',
+              subTitle: 'Total \$$shipPrice ',
+              onTap: () =>
+                  Navigator.pushNamed(context, '/ship', arguments: user).then(
+                (value) =>
+                    setState(() => shipPrice = value as int),
+              ),
+            ),
+            ListTileCustom(
+              title: 'Valores en Guatemala',
+              subTitle: 'Total $_total ',
+              onTap: () {},
+            ),
           ],
         ),
         bottomSheet: _customBottomSheet(),
