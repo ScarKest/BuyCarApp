@@ -20,7 +20,7 @@ int calculateBuyerFeeClient(int price) {
   return 0;
 }
 
-int calculateVirtualFee(String user, int price) => (user == 'Owner')
+int calculateVirtualFe(String user, int price) => (user == 'Owner')
     ? calculateVirtualFeeOwner(price)
     : calculateVirtualFeeClient(price);
 

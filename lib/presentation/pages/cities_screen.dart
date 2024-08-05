@@ -19,7 +19,7 @@ class _CitiesScreenState extends State<CitiesScreen> {
     final user = response['User'];
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ciudades'),
+        title: Text(response['State'].toString()),
       ),
       body: ListView(
         children: citiesList
