@@ -21,6 +21,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
       body: ListView(
         padding: EdgeInsets.all(20),
         children: [
+          SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
           _optionCard(
             image: 'assets/images/vehicule.jpg',
             title: 'Vehiculo',
