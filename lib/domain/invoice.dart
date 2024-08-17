@@ -5,13 +5,15 @@ class Invoice {
   final double internetBidFee;
   final double gate;
   final double? titlePickup;
+  final double total;
 
   Invoice({
     required this.price,
-     this.enviromentalFee = 0.0,
+    this.enviromentalFee = 10,
     required this.buyerFee,
     required this.internetBidFee,
-    this.gate = 0.0,
+    this.gate = 79.0,
     required this.titlePickup,
+    this.total = 0,
   });
 }
