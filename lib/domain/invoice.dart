@@ -4,7 +4,7 @@ class Invoice {
   final double buyerFee;
   final double internetBidFee;
   final double gate;
-  final double? titlePickup;
+  final double titlePickup;
   final double total;
 
   Invoice({
@@ -13,7 +13,7 @@ class Invoice {
     required this.buyerFee,
     required this.internetBidFee,
     this.gate = 79.0,
-    required this.titlePickup,
+    this.titlePickup = 20,
     this.total = 0,
   });
 }
