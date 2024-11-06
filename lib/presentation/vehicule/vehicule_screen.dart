@@ -23,7 +23,6 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
   final TextEditingController yearControler = TextEditingController();
   final TextEditingController priceControler = TextEditingController();
   final TextEditingController stateControler = TextEditingController();
-  int selectedYear = DateTime.now().year;
 
   bool cleanTitleValue = false;
   bool internetFeeValue = false;
@@ -54,63 +53,66 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            _widgetTaxes(title: 'Cliente', value: ''),
             TextFormField(
+              decoration: InputDecoration(label: Text('Cliente')),
               controller: clientControler,
             ),
-            _widgetTaxes(title: 'Marca, modelo y año', value: ''),
             TextFormField(
+              decoration: InputDecoration(label: Text('Marca, modelo y año')),
               controller: carControler,
             ),
-            _widgetTaxes(title: 'Lote', value: ''),
             TextFormField(
+              decoration: InputDecoration(label: Text('Lote')),
               controller: lotControler,
               keyboardType: TextInputType.number,
             ),
-            _widgetTaxes(title: 'Estado', value: ''),
             TextFormField(
+              decoration: InputDecoration(label: Text('Estado')),
               controller: stateControler,
             ),
-            _widgetTaxes(title: 'Puja de carro', value: ''),
             TextFormField(
+              decoration: InputDecoration(label: Text('Puja de Carro')),
               controller: priceControler,
               keyboardType: TextInputType.number,
             ),
-            // _widgetTaxes(title: 'Taxes', value: ''),
-            // _widgetTaxes(title: 'Grua', value: ''),
-            // _widgetTaxes(title: 'Barco y Grua', value: '\$ 2000'),
             _widgetTaxes(title: 'Transferencias', value: '50'),
-            // _widgetTaxes(title: 'Iprima', value: '\$'),
             _widgetTaxes(title: 'Papeleria', value: '\$ 20'),
             _widgetTaxes(title: 'Almacenaje, poliza y grua', value: '\$ 250'),
             _widgetTaxes(title: 'Placas', value: '\$ 2000'),
             _widgetTaxes(title: 'Titulo y tarjeta', value: '\$ 20'),
             _widgetTaxes(title: 'Comision', value: '\$ 255'),
-
             Text(total.toString()),
-            // _widgetTaxes(title: 'Traspaso', value: 'Q1500'),
-            // _widgetTaxes(title: 'Total puesto en GT', value: '\$ 2000'),
-            // _widgetTaxes(title: 'SALE PRICE', value: '\$ ${invoice.price}'),
-            // _widgetTaxes(title: 'Valor Factura', value: '\$ $totalInvoice'),
-            // _widgetTaxes(title: 'Valor Factura', value: '\$ $totalInvoice'),
-            // _widgetTaxes(title: 'Iva', value: '\$ 2000'),
-            OutlinedButton(
-              onPressed: () => getTotal(
-                  price: double.parse(priceControler.text),
-                  cleanTitleValue: cleanTitleValue,
-                  internetFeeValue: internetFeeValue,
-                  invoice: invoice,
-                  totalInvoice: totalInvoice),
-              child: Text('Cotizar'),
-            ),
-            OutlinedButton(
-              onPressed: () => _takeScreenshot(),
-              child: Text('Imprimir'),
-            )
+            _buttons(),
           ],
         ),
       ),
     );
+  }
+
+  Row _buttons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        OutlinedButton(
+          onPressed: () => _getTotal(),
+          child: Container(width: 100, child: Center(child: Text('Cotizar'))),
+        ),
+        OutlinedButton(
+          onPressed: () => _takeScreenshot(),
+          child: Container(width: 100, child: Center(child: Text('Imprimir'))),
+        )
+      ],
+    );
+  }
+
+  _getTotal() {
+    setState(() {});
+    total = getTotal(
+        price: double.parse(priceControler.text),
+        cleanTitleValue: cleanTitleValue,
+        internetFeeValue: internetFeeValue,
+        invoice: invoice,
+        totalInvoice: totalInvoice);
   }
 
   Widget _widgetTaxes({
