@@ -1,4 +1,4 @@
-import 'package:buycar/domain/invoice.dart';
+import 'package:buycar/domain/invoice_copart.dart';
 import 'package:buycar/utils/taxes_fee/clean_title_taxes.dart';
 import 'package:buycar/utils/taxes_fee/non_clean_title_taxes.dart';
 
@@ -6,7 +6,7 @@ double getTotal({
   required double totalInvoice,
   required double price,
   required bool cleanTitleValue,
-  required Invoice invoice,
+  required InvoiceCopart invoice,
   required bool internetFeeValue,
 }) {
   return getTaxes(
@@ -50,13 +50,13 @@ double getTotal({
 double getTaxes({
   required double price,
   required bool cleanTitleValue,
-  required Invoice invoice,
+  required InvoiceCopart invoice,
   required bool internetFeeValue,
 }) {
   double totalInvoice = 0;
 
   if (cleanTitleValue == true) {
-    invoice = Invoice(
+    invoice = InvoiceCopart(
       price: price,
       buyerFee: CleanTitleTaxes().biddingFeeSecuredPayment(price),
       internetBidFee: (internetFeeValue == true)
@@ -71,7 +71,7 @@ double getTaxes({
         invoice.gate +
         invoice.titlePickup;
   } else {
-    invoice = Invoice(
+    invoice = InvoiceCopart(
       price: price,
       buyerFee: NonCleanTitleTaxes().biddingFeeSecuredPayment(price),
       internetBidFee: (internetFeeValue == true)

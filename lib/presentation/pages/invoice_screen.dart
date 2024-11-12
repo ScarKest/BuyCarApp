@@ -3,14 +3,14 @@ import 'package:buycar/utils/calculate_virtual_bid_fee.dart';
 import 'package:buycar/utils/clean_title/buyer_fee.dart';
 import 'package:flutter/material.dart';
 
-class InvoiceScreen extends StatefulWidget {
-  const InvoiceScreen({super.key});
+class InvoiceCopartScreen extends StatefulWidget {
+  const InvoiceCopartScreen({super.key});
 
   @override
-  State<InvoiceScreen> createState() => _InvoiceScreenState();
+  State<InvoiceCopartScreen> createState() => _InvoiceCopartScreenState();
 }
 
-class _InvoiceScreenState extends State<InvoiceScreen> {
+class _InvoiceCopartScreenState extends State<InvoiceCopartScreen> {
   //Precios que varian segun precio
   int virtualFee = 0;
   int buyerFee = 0;

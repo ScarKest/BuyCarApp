@@ -1,14 +1,6 @@
-import 'dart:typed_data';
-import 'dart:ui' as ui;
 import 'package:buycar/domain/invoice.dart';
-import 'package:buycar/utils/calculates/invoice_calculate.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:screenshot/screenshot.dart';
 
-//Se cobran $2000 la traida
-//
 class VehiculeScreen extends StatefulWidget {
   const VehiculeScreen({super.key});
 
@@ -20,22 +12,9 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
   final TextEditingController clientControler = TextEditingController();
   final TextEditingController lotControler = TextEditingController();
   final TextEditingController carControler = TextEditingController();
-  final TextEditingController yearControler = TextEditingController();
   final TextEditingController priceControler = TextEditingController();
   final TextEditingController stateControler = TextEditingController();
-
-  bool cleanTitleValue = false;
-  bool internetFeeValue = false;
-  double totalInvoice = 0;
-  double total = 0;
-  ScreenshotController screenshotController = ScreenshotController();
-  Invoice invoice = Invoice(
-    price: 0,
-    buyerFee: 0,
-    internetBidFee: 0,
-    titlePickup: 0,
-  );
-  GlobalKey _globalKey = GlobalKey();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,122 +22,92 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
       appBar: AppBar(
         title: Text('Vehiculos'),
       ),
-      body: Screenshot(controller: screenshotController, child: _bodyWidget()),
+      body: _bodyWidget(),
     );
   }
 
   Widget _bodyWidget() {
     return Padding(
-      padding: EdgeInsets.all(30),
+      padding: EdgeInsets.symmetric(horizontal: 30),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: InputDecoration(label: Text('Cliente')),
-              controller: clientControler,
-            ),
-            TextFormField(
-              decoration: InputDecoration(label: Text('Marca, modelo y año')),
-              controller: carControler,
-            ),
-            TextFormField(
-              decoration: InputDecoration(label: Text('Lote')),
-              controller: lotControler,
-              keyboardType: TextInputType.number,
-            ),
-            TextFormField(
-              decoration: InputDecoration(label: Text('Estado')),
-              controller: stateControler,
-            ),
-            TextFormField(
-              decoration: InputDecoration(label: Text('Puja de Carro')),
-              controller: priceControler,
-              keyboardType: TextInputType.number,
-            ),
-            _widgetTaxes(title: 'Transferencias', value: '50'),
-            _widgetTaxes(title: 'Papeleria', value: '\$ 20'),
-            _widgetTaxes(title: 'Almacenaje, poliza y grua', value: '\$ 250'),
-            _widgetTaxes(title: 'Placas', value: '\$ 2000'),
-            _widgetTaxes(title: 'Titulo y tarjeta', value: '\$ 20'),
-            _widgetTaxes(title: 'Comision', value: '\$ 255'),
-            Text(total.toString()),
-            _buttons(),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(label: Text('Cliente')),
+                controller: clientControler,
+                validator: _validator,
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(label: Text('Marca, modelo y año')),
+                controller: carControler,
+                validator: _validator,
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(label: Text('Lote')),
+                controller: lotControler,
+                keyboardType: TextInputType.number,
+                validator: _validator,
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(label: Text('Estado')),
+                controller: stateControler,
+                validator: _validator,
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(label: Text('Puja de Carro')),
+                controller: priceControler,
+                keyboardType: TextInputType.number,
+                validator: _validator,
+              ),
+              SizedBox(height: 60),
+              ElevatedButton(
+                onPressed: () => (_formKey.currentState!.validate())
+                    ? _pushToInvoiceScreen()
+                    : null,
+                child: Container(
+                    width: double.infinity,
+                    height: 60,
+                    child: Center(
+                        child: Container(
+                      child: Text(
+                        'Cotizar',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ))),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Row _buttons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        OutlinedButton(
-          onPressed: () => _getTotal(),
-          child: Container(width: 100, child: Center(child: Text('Cotizar'))),
+  String? _validator(String? value) =>
+      (value == null || value.isEmpty) ? 'Este campo no puede ir vacio' : null;
+
+  _pushToInvoiceScreen() => Navigator.pushNamed(
+        context,
+        '/invoice',
+        arguments: Invoice(
+          client: clientControler.text,
+          vehicleData: carControler.text,
+          lot: lotControler.text,
+          stateUsa: stateControler.text,
+          bidPrice: double.parse(priceControler.text),
+          ship: 2000,
+          transfers: 50,
+          documents: 20,
+          poliza: 20,
+          placas: 20,
+          tramitePlacas: 40,
+          titleAndCard: 20,
+          comission: 255,
         ),
-        OutlinedButton(
-          onPressed: () => _takeScreenshot(),
-          child: Container(width: 100, child: Center(child: Text('Imprimir'))),
-        )
-      ],
-    );
-  }
-
-  _getTotal() {
-    setState(() {});
-    total = getTotal(
-        price: double.parse(priceControler.text),
-        cleanTitleValue: cleanTitleValue,
-        internetFeeValue: internetFeeValue,
-        invoice: invoice,
-        totalInvoice: totalInvoice);
-  }
-
-  Widget _widgetTaxes({
-    String title = '',
-    String value = '',
-    List<Widget> widgets = const <Widget>[],
-  }) {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Text(title),
-        ),
-        Expanded(child: Container()),
-        Text(value),
-        ...widgets,
-      ],
-    );
-  }
-
-  _takeScreenshot() async {
-    await screenshotController
-        .captureFromLongWidget(
-            InheritedTheme.captureAll(
-              context,
-              Material(
-                child: _bodyWidget(),
-              ),
-            ),
-            delay: Duration(milliseconds: 100),
-            context: context)
-        .then((capturedImage) {
-      _saveLocalImage();
-    });
-  }
-
-  _saveLocalImage() async {
-    RenderRepaintBoundary boundary =
-        _globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-    ui.Image image = await boundary.toImage();
-    ByteData? byteData =
-        await (image.toByteData(format: ui.ImageByteFormat.png));
-    if (byteData != null) {
-      final result =
-          await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
-      print(result);
-    }
-  }
+      );
 }
