@@ -3,17 +3,14 @@ import 'package:buycar/utils/taxes_fee/clean_title_taxes.dart';
 import 'package:buycar/utils/taxes_fee/non_clean_title_taxes.dart';
 
 double getTotal({
-  required double totalInvoice,
-  required double price,
+  required double bidPrice,
   required bool cleanTitleValue,
-  required InvoiceCopart invoice,
   required bool internetFeeValue,
 }) {
   return getTaxes(
-        price: price,
+        bidPrice: bidPrice,
         cleanTitleValue: cleanTitleValue,
         internetFeeValue: internetFeeValue,
-        invoice: invoice,
       )
       //Barco y grua
       +
@@ -27,10 +24,9 @@ double getTotal({
       //Iva e Iprima
       +
       (getTaxes(
-            price: price,
+            bidPrice: bidPrice,
             cleanTitleValue: cleanTitleValue,
             internetFeeValue: internetFeeValue,
-            invoice: invoice,
           ) *
           0.32)
       //Almacenaje y poliza
@@ -48,23 +44,23 @@ double getTotal({
 }
 
 double getTaxes({
-  required double price,
+  required double bidPrice,
   required bool cleanTitleValue,
-  required InvoiceCopart invoice,
   required bool internetFeeValue,
 }) {
+  InvoiceCopart invoice;
   double totalInvoice = 0;
 
   if (cleanTitleValue == true) {
     invoice = InvoiceCopart(
-      price: price,
-      buyerFee: CleanTitleTaxes().biddingFeeSecuredPayment(price),
+      price: bidPrice,
+      buyerFee: CleanTitleTaxes().biddingFeeSecuredPayment(bidPrice),
       internetBidFee: (internetFeeValue == true)
-          ? CleanTitleTaxes().virtualFeePreBid(price)
-          : CleanTitleTaxes().virtualFeeLiveBid(price),
+          ? CleanTitleTaxes().virtualFeePreBid(bidPrice)
+          : CleanTitleTaxes().virtualFeeLiveBid(bidPrice),
       titlePickup: 20,
     );
-    totalInvoice = price +
+    totalInvoice = bidPrice +
         invoice.buyerFee +
         invoice.enviromentalFee +
         invoice.internetBidFee +
@@ -72,14 +68,14 @@ double getTaxes({
         invoice.titlePickup;
   } else {
     invoice = InvoiceCopart(
-      price: price,
-      buyerFee: NonCleanTitleTaxes().biddingFeeSecuredPayment(price),
+      price: bidPrice,
+      buyerFee: NonCleanTitleTaxes().biddingFeeSecuredPayment(bidPrice),
       internetBidFee: (internetFeeValue == true)
-          ? NonCleanTitleTaxes().virtualFeePreBid(price)
-          : NonCleanTitleTaxes().virtualFeeLiveBid(price),
+          ? NonCleanTitleTaxes().virtualFeePreBid(bidPrice)
+          : NonCleanTitleTaxes().virtualFeeLiveBid(bidPrice),
       titlePickup: 20,
     );
-    totalInvoice = price +
+    totalInvoice = bidPrice +
         invoice.buyerFee +
         invoice.enviromentalFee +
         invoice.internetBidFee +

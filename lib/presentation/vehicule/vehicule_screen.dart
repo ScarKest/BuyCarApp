@@ -1,5 +1,7 @@
 import 'package:buycar/domain/invoice.dart';
+import 'package:buycar/utils/calculates/invoice_calculate.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class VehiculeScreen extends StatefulWidget {
   const VehiculeScreen({super.key});
@@ -51,6 +53,7 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
                 controller: lotControler,
                 keyboardType: TextInputType.number,
                 validator: _validator,
+                inputFormatters: [LengthLimitingTextInputFormatter(8)],
               ),
               SizedBox(height: 10),
               TextFormField(
@@ -108,6 +111,17 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
           tramitePlacas: 40,
           titleAndCard: 20,
           comission: 255,
+          total$: getTotal(
+            bidPrice: double.parse(priceControler.text),
+            cleanTitleValue: false,
+            internetFeeValue: false,
+          ),
+          totalQ: getTotal(
+                bidPrice: double.parse(priceControler.text),
+                cleanTitleValue: false,
+                internetFeeValue: false,
+              ) *
+              8,
         ),
       );
 }

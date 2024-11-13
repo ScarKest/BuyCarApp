@@ -12,6 +12,8 @@ class Invoice {
   final double tramitePlacas;
   final double titleAndCard;
   final double comission;
+  final double total$;
+  final double totalQ;
 
   Invoice({
     required this.client,
@@ -27,5 +29,7 @@ class Invoice {
     required this.tramitePlacas,
     required this.titleAndCard,
     required this.comission,
+    required this.total$,
+    required this.totalQ,
   });
 }
