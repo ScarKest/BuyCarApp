@@ -1,19 +1,36 @@
 class Invoice {
-  final double price;
-  final double enviromentalFee;
-  final double buyerFee;
-  final double internetBidFee;
-  final double gate;
-  final double titlePickup;
-  final double total;
+  final String client;
+  final String vehicleData;
+  final String lot;
+  final String stateUsa;
+  final double bidPrice;
+  final double ship;
+  final double transfers;
+  final double documents;
+  final double poliza;
+  final double placas;
+  final double tramitePlacas;
+  final double titleAndCard;
+  final double comission;
+  final double total$;
+  final double totalQ;
 
   Invoice({
-    required this.price,
-    this.enviromentalFee = 10,
-    required this.buyerFee,
-    required this.internetBidFee,
-    this.gate = 79.0,
-    this.titlePickup = 20,
-    this.total = 0,
+    required this.client,
+    required this.vehicleData,
+    required this.lot,
+    required this.stateUsa,
+    required this.bidPrice,
+    required this.ship,
+    this.transfers = 50,
+    this.documents = 20,
+    //TODO Ask dad price of this
+    required this.poliza,
+    this.placas = 20,
+     this.tramitePlacas = 40,
+     this.titleAndCard =20,
+     this.comission = 255,
+    required this.total$,
+    required this.totalQ,
   });
 }

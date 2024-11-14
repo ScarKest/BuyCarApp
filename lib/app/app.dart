@@ -1,5 +1,6 @@
 import 'package:buycar/presentation/client/client_screen.dart';
 import 'package:buycar/presentation/home/home_screen.dart';
+import 'package:buycar/presentation/invoice/invoice_screen.dart';
 import 'package:buycar/presentation/owner/owner_screen.dart';
 import 'package:buycar/presentation/packages/packages_screen.dart';
 import 'package:buycar/presentation/pages/cities_screen.dart';
@@ -34,6 +35,7 @@ class App extends StatelessWidget {
         '/states': (context) => const StatesScreen(),
         '/cities': (context) => const CitiesScreen(),
         '/invoice': (context) => const InvoiceScreen(),
+        '/invoiceCopart': (context) => const InvoiceCopartScreen(),
         '/ship': (context) => const ShipWidget(),
       },
     );
