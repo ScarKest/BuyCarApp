@@ -1,7 +1,8 @@
-class Invoice {
+class Quotation {
   final String client;
+  final double telephone;
   final String vehicleData;
-  final String lot;
+  final double lot;
   final String stateUsa;
   final double bidPrice;
   final double ship;
@@ -12,11 +13,12 @@ class Invoice {
   final double tramitePlacas;
   final double titleAndCard;
   final double comission;
-  final double total$;
+  final double totalD;
   final double totalQ;
 
-  Invoice({
+  Quotation({
     required this.client,
+    required this.telephone,
     required this.vehicleData,
     required this.lot,
     required this.stateUsa,
@@ -30,7 +32,7 @@ class Invoice {
      this.tramitePlacas = 40,
      this.titleAndCard =20,
      this.comission = 255,
-    required this.total$,
+    required this.totalD,
     required this.totalQ,
   });
 }

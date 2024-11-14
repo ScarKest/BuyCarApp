@@ -2,14 +2,14 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class HomeScreen1 extends StatefulWidget {
-  const HomeScreen1({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomeScreen1> createState() => _HomeScreen1State();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreen1State extends State<HomeScreen1> {
+class _HomeScreenState extends State<HomeScreen> {
   TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,9 @@ class _HomeScreen1State extends State<HomeScreen1> {
       body: ListView(
         padding: EdgeInsets.all(20),
         children: [
-          SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.1,
+          ),
           _optionCard(
             image: 'assets/images/vehicule.jpg',
             title: 'Vehiculo',
@@ -31,9 +33,12 @@ class _HomeScreen1State extends State<HomeScreen1> {
             height: MediaQuery.of(context).size.height * 0.1,
           ),
           _optionCard(
-            image: 'assets/images/package.jpg',
-            title: 'Paquetes',
-            onPressed: () => Navigator.pushNamed(context, '/package'),
+            image: 'assets/images/vehicule_gold.jpg',
+            title: 'Hitorial de cotizaciones',
+            onPressed: () => Navigator.pushNamed(context, '/history_transactions'),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.1,
           ),
         ],
       ),

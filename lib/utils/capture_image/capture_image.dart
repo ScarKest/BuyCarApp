@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:buycar/domain/invoice.dart';
+import 'package:buycar/domain/invoice/quotation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
@@ -11,7 +11,7 @@ import 'package:share_plus/share_plus.dart';
 class CaptureImage {
   Future<void> captureAndSharePng({
     required GlobalKey globalKey,
-    required Invoice invoice,
+    required Quotation invoice,
   }) async {
     try {
       RenderRepaintBoundary boundary = globalKey.currentContext

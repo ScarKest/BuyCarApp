@@ -1,4 +1,5 @@
 import 'package:buycar/presentation/client/client_screen.dart';
+import 'package:buycar/presentation/history/history_transactions_screen.dart';
 import 'package:buycar/presentation/home/home_screen.dart';
 import 'package:buycar/presentation/invoice/invoice_screen.dart';
 import 'package:buycar/presentation/owner/owner_screen.dart';
@@ -18,13 +19,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          // appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-          // colorScheme: ColorScheme.fromSwatch(
-          //   accentColor: const Color(0xFF13B9FF),
-          // ),
-          ),
-      home: const HomeScreen1(),
+      home: const HomeScreen(),
       routes: {
         '/owner': (context) => const OwnerScreen(),
         '/package': (context) => const PackagesScreen(),
@@ -34,9 +29,10 @@ class App extends StatelessWidget {
         '/ports': (context) => const PortsScreen(),
         '/states': (context) => const StatesScreen(),
         '/cities': (context) => const CitiesScreen(),
-        '/invoice': (context) => const InvoiceScreen(),
+        '/invoice': (context) => const QuotationScreen(),
         '/invoiceCopart': (context) => const InvoiceCopartScreen(),
         '/ship': (context) => const ShipWidget(),
+        '/history_transactions': (context) => HistoryTransactionsScreen(),
       },
     );
   }
