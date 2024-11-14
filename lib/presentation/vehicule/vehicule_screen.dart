@@ -38,12 +38,14 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
             children: [
               TextFormField(
                 decoration: InputDecoration(label: Text('Cliente')),
+                textCapitalization: TextCapitalization.words,
                 controller: clientControler,
                 validator: _validator,
               ),
               SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(label: Text('Marca, modelo y año')),
+                textCapitalization: TextCapitalization.words,
                 controller: carControler,
                 validator: _validator,
               ),
@@ -58,6 +60,7 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
               SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(label: Text('Estado')),
+                textCapitalization: TextCapitalization.words,
                 controller: stateControler,
                 validator: _validator,
               ),
@@ -104,13 +107,7 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
           stateUsa: stateControler.text,
           bidPrice: double.parse(priceControler.text),
           ship: 2000,
-          transfers: 50,
-          documents: 20,
           poliza: 20,
-          placas: 20,
-          tramitePlacas: 40,
-          titleAndCard: 20,
-          comission: 255,
           total$: getTotal(
             bidPrice: double.parse(priceControler.text),
             cleanTitleValue: false,

@@ -47,15 +47,18 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
   }
 
   Widget _bodyWidget() {
-    return Column(
-      children: [
-        _invoiceWidget(),
-        OutlinedButton(
-          onPressed: () => CaptureImage()
-              .captureAndSharePng(globalKey: _globalKey, invoice: invoice),
-          child: Container(width: 100, child: Center(child: Text('Imprimir'))),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _invoiceWidget(),
+          OutlinedButton(
+            onPressed: () => CaptureImage()
+                .captureAndSharePng(globalKey: _globalKey, invoice: invoice),
+            child: Container(width: 100, child: Center(child: Text('Imprimir'))),
+          ),
+          SizedBox(height: 50,)
+        ],
+      ),
     );
   }
 
@@ -66,8 +69,9 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
         padding: EdgeInsets.all(30),
         color: color,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // TODO: Add image the importadora to invoice
+            Image.asset('assets/images/contac_us.png'),
             Text('Cliente: ${invoice.client}', style: _textStyle),
             Text('Carro: ${invoice.vehicleData}', style: _textStyle),
             Text('Lote: https://www.copart.com/lot/${invoice.lot}',
@@ -77,20 +81,19 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
             _widgetTaxes(title: 'Barco y grua', value: '\$ ${invoice.ship}'),
             _widgetTaxes(
                 title: 'Transferencias', value: '\$ ${invoice.transfers}'),
-            _widgetTaxes(
-                title: 'Papeleria', value: '\$ ${invoice.documents}'),
+            _widgetTaxes(title: 'Papeleria', value: '\$ ${invoice.documents}'),
             _widgetTaxes(
                 title: 'Almacenaje, poliza y grua',
                 value: '\$ ${invoice.poliza}'),
             _widgetTaxes(title: 'Placas', value: '\$ ${invoice.placas}'),
             _widgetTaxes(
-                title: 'Tramite placas',
-                value: '\$ ${invoice.tramitePlacas}'),
+                title: 'Tramite placas', value: '\$ ${invoice.tramitePlacas}'),
             _widgetTaxes(
-                title: 'Titulo y tarjeta',
-                value: '\$ ${invoice.titleAndCard}'),
+                title: 'Titulo y tarjeta', value: '\$ ${invoice.titleAndCard}'),
             _widgetTaxes(title: 'Comision', value: '\$ ${invoice.comission}'),
+            SizedBox(height: 15),
             Text('Total en \$ ${invoice.total$}', style: _totalTextStyle),
+            SizedBox(height: 15),
             Text('Total en Q ${invoice.totalQ}', style: _totalTextStyle),
           ],
         ),
