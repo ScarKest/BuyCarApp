@@ -23,15 +23,15 @@ class QuotationModel extends Quotation {
   QuotationModel.fromJson(Map<String, dynamic> json)
       : this(
           client: json['client'].toString(),
-          telephone: double.parse(json['telephone']),
+          telephone: double.parse(json['telephone'].toString()),
           vehicleData: json['vehicleData'].toString(),
-          lot: double.parse(json['lot']),
+          lot: double.parse(json['lot'].toString()),
           stateUsa: json['stateUsa'].toString(),
-          bidPrice: double.parse(json['bidPrice']),
-          ship: double.parse(json['ship']),
-          poliza: double.parse(json['poliza']),
-          totalD: double.parse(json['totalD']),
-          totalQ: double.parse(json['totalQ']),
+          bidPrice: double.parse(json['bidPrice'].toString()),
+          ship: double.parse(json['ship'].toString()),
+          poliza: double.parse(json['poliza'].toString()),
+          totalD: double.parse(json['totalD'].toString()),
+          totalQ: double.parse(json['totalQ'].toString()),
         );
 
   Map<String, dynamic> toJson() {
