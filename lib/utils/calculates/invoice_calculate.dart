@@ -1,4 +1,4 @@
-import 'package:buycar/domain/invoice_copart.dart';
+import 'package:buycar/domain/invoice/invoice_copart.dart';
 import 'package:buycar/utils/taxes_fee/clean_title_taxes.dart';
 import 'package:buycar/utils/taxes_fee/non_clean_title_taxes.dart';
 

@@ -1,26 +1,27 @@
-import 'package:buycar/domain/invoice.dart';
+import 'package:buycar/domain/invoice/quotation.dart';
 import 'package:buycar/utils/capture_image/capture_image.dart';
 import 'package:flutter/material.dart';
 
 //Se cobran $2000 la traida
 //
-class InvoiceScreen extends StatefulWidget {
-  const InvoiceScreen({super.key});
+class QuotationScreen extends StatefulWidget {
+  const QuotationScreen({super.key});
 
   @override
-  State<InvoiceScreen> createState() => _InvoiceScreenState();
+  State<QuotationScreen> createState() => _QuotationScreenState();
 }
 
-class _InvoiceScreenState extends State<InvoiceScreen> {
+class _QuotationScreenState extends State<QuotationScreen> {
   GlobalKey _globalKey = GlobalKey();
   TextStyle _textStyle = TextStyle(fontSize: 20);
   TextStyle _totalTextStyle =
       TextStyle(fontSize: 32, fontWeight: FontWeight.bold);
   Color color = Colors.white;
-  Invoice invoice = Invoice(
+  Quotation invoice = Quotation(
     client: '',
+    telephone: 0,
     vehicleData: '',
-    lot: '',
+    lot:0,
     stateUsa: '',
     bidPrice: 0,
     ship: 0,
@@ -31,13 +32,13 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
     tramitePlacas: 0,
     titleAndCard: 0,
     comission: 0,
-    total$: 0,
+    totalD: 0,
     totalQ: 0,
   );
 
   @override
   Widget build(BuildContext context) {
-    invoice = ModalRoute.of(context)!.settings.arguments as Invoice;
+    invoice = ModalRoute.of(context)!.settings.arguments as Quotation;
     return Scaffold(
       appBar: AppBar(
         title: Text('Vehiculos'),
@@ -92,7 +93,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                 title: 'Titulo y tarjeta', value: '\$ ${invoice.titleAndCard}'),
             _widgetTaxes(title: 'Comision', value: '\$ ${invoice.comission}'),
             SizedBox(height: 15),
-            Text('Total en \$ ${invoice.total$}', style: _totalTextStyle),
+            Text('Total en \$ ${invoice.totalD}', style: _totalTextStyle),
             SizedBox(height: 15),
             Text('Total en Q ${invoice.totalQ}', style: _totalTextStyle),
           ],
