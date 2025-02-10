@@ -12,9 +12,9 @@ class QuotationScreen extends StatefulWidget {
 }
 
 class _QuotationScreenState extends State<QuotationScreen> {
-  GlobalKey _globalKey = GlobalKey();
-  TextStyle _textStyle = TextStyle(fontSize: 20);
-  TextStyle _totalTextStyle =
+  final GlobalKey _globalKey = GlobalKey();
+  final TextStyle _textStyle = TextStyle(fontSize: 20);
+  final TextStyle _totalTextStyle =
       TextStyle(fontSize: 32, fontWeight: FontWeight.bold);
   Color color = Colors.white;
   Quotation invoice = Quotation(
@@ -55,7 +55,7 @@ class _QuotationScreenState extends State<QuotationScreen> {
           OutlinedButton(
             onPressed: () => CaptureImage()
                 .captureAndSharePng(globalKey: _globalKey, invoice: invoice),
-            child: Container(width: 100, child: Center(child: Text('Imprimir'))),
+            child: SizedBox(width: 100, child: Center(child: Text('Imprimir'))),
           ),
           SizedBox(height: 50,)
         ],
