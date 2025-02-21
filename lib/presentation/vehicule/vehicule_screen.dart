@@ -19,13 +19,6 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
   final TextEditingController priceControler = TextEditingController();
   final TextEditingController stateControler = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final List<String> _options = [
-    'Option 1',
-    'Option 2',
-    'Option 3',
-    'Option 4'
-  ];
-  String? _selectedOption;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +69,7 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
                 inputFormatters: [LengthLimitingTextInputFormatter(8)],
               ),
               SizedBox(height: 10),
-                // _dropDownStates(),
+              // _dropDownStates(),
               SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(label: Text('Puja de Carro')),
@@ -90,15 +83,15 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
                     ? _pushToInvoiceScreen()
                     : null,
                 child: SizedBox(
-                    width: double.infinity,
-                    height: 60,
-                    child: Center(
-                        child: Container(
-                      child: Text(
-                        'Cotizar',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ))),
+                  width: double.infinity,
+                  height: 60,
+                  child: Center(
+                    child: Text(
+                      'Cotizar',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -106,28 +99,6 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
       ),
     );
   }
-
-  // Widget _dropDownStates() {
-  //   return DropdownMenu(
-  //       enableFilter: true,
-  //       dropdownMenuEntries: _options.map((String option) {
-  //         return DropdownMenuEntry<String>(
-  //           value: option,
-  //           label: option,
-  //         );
-  //       }).toList(),
-  //       onSelected: (String? newValue) {
-  //         setState(() {
-  //           _selectedOption = newValue;
-  //         });
-  //       }
-  //         // searchCallback: (String query) {
-  //         //   return _options
-  //         //       .where((option) =>
-  //         //           option.toLowerCase().contains(query.toLowerCase()))
-  //         //      .toList();
-  //         });
-  // }
 
   String? _validator(String? value) =>
       (value == null || value.isEmpty) ? 'Este campo no puede ir vacio' : null;
@@ -161,10 +132,12 @@ class _VehiculeScreenState extends State<VehiculeScreen> {
           8,
     );
 
-    addQuotation(quotation).then((quote) => Navigator.pushNamed(
-          context,
-          '/invoice',
-          arguments: quotation,
-        ));
+    addQuotation(quotation).then(
+      (quote) => Navigator.pushNamed(
+        context,
+        '/invoice',
+        arguments: quotation,
+      ),
+    );
   }
 }
