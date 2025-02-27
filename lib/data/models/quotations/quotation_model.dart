@@ -8,6 +8,7 @@ class QuotationModel extends Quotation {
     required super.lot,
     required super.stateUsa,
     required super.bidPrice,
+    required super.detailFees,
     required super.ship,
     super.transfers = 50,
     super.documents = 20,
@@ -17,7 +18,6 @@ class QuotationModel extends Quotation {
     super.titleAndCard = 20,
     super.comission = 255,
     required super.totalD,
-    required super.totalQ,
   });
 
   QuotationModel.fromJson(Map<String, dynamic> json)
@@ -28,10 +28,10 @@ class QuotationModel extends Quotation {
           lot: double.parse(json['lot'].toString()),
           stateUsa: json['stateUsa'].toString(),
           bidPrice: double.parse(json['bidPrice'].toString()),
+          detailFees: {'':2},
           ship: double.parse(json['ship'].toString()),
           poliza: double.parse(json['poliza'].toString()),
           totalD: double.parse(json['totalD'].toString()),
-          totalQ: double.parse(json['totalQ'].toString()),
         );
 
   Map<String, dynamic> toJson() {
@@ -51,7 +51,6 @@ class QuotationModel extends Quotation {
       'titleAndCard': titleAndCard,
       'comission': comission,
       'totalD': totalD,
-      'totalQ': totalQ,
     };
   }
 }
