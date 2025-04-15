@@ -1,3 +1,3 @@
-part of 'vehicule_bloc.dart';
+part of 'vehicule_event.dart';
 
 sealed class VehiculeEvent {}

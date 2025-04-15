@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/services.dart';
 
 Future<Map<String, dynamic>> calculateTotal({
@@ -15,16 +16,22 @@ Future<Map<String, dynamic>> calculateTotal({
   Map<String, double> detailFees = {};
 
   // Obtener tarifa de bidding
-  String metodoPago = isSecurePayment ? "secure_payment" : "unsecure_payment";
+  // String metodoPago = isSecurePayment ? "secure_payment" : "unsecure_payment";
+  log('Feeessssss ${fees["bidding_fees"][1]}');
   detailFees["Bidding Fee"] =
-      _buscarFee(fees["bidding_fees"].first[metodoPago], price);
+      _buscarFee(fees["bidding_fees"](isSecurePayment) ? [0] : [1], price);
   total += detailFees["Bidding Fee"]!;
 
   // Obtener tarifas de virtual bid
   for (var bidType in fees["virtual_bid_fee"]) {
-    String feeName = bidType.keys.first;
-    detailFees[feeName] = _buscarFee(bidType.values.first, price);
-    total += detailFees[feeName]!;
+    if (isPreBidFee) {
+      // String feeName = bidType.keys.first;
+      detailFees['pre_bid_fees'] = _buscarFee(bidType.values.first, price);
+      total += detailFees['pre_bid_fees']!;
+    } else {
+      detailFees['live_bid_fees'] = _buscarFee(bidType.values.first, price);
+      total += detailFees['live_bid_fees']!;
+    }
   }
 
   // Sumar tarifas fijas
