@@ -1,0 +1,2 @@
+C:/Projects/Flutter/Personal/buycar/android/app/.cxx/Debug/56u5u1m5/x86/CMakeFiles/edit_cache.dir
+C:/Projects/Flutter/Personal/buycar/android/app/.cxx/Debug/56u5u1m5/x86/CMakeFiles/rebuild_cache.dir

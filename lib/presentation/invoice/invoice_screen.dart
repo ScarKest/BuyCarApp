@@ -18,23 +18,24 @@ class _QuotationScreenState extends State<QuotationScreen> {
       TextStyle(fontSize: 32, fontWeight: FontWeight.bold);
   Color color = Colors.white;
   Quotation invoice = Quotation(
-    client: '',
-    telephone: 0,
-    vehicleData: '',
-    lot:0,
-    stateUsa: '',
-    bidPrice: 0,
-    ship: 0,
-    transfers: 0,
-    documents: 0,
-    poliza: 0,
-    placas: 0,
-    tramitePlacas: 0,
-    titleAndCard: 0,
-    comission: 0,
-    totalD: 0,
-    totalQ: 0,
-  );
+      client: '',
+      telephone: 0,
+      vehicleData: '',
+      lot: 0,
+      stateUsa: '',
+      bidPrice: 0,
+      ship: 0,
+      transfers: 0,
+      documents: 0,
+      poliza: 0,
+      placas: 0,
+      tramitePlacas: 0,
+      titleAndCard: 0,
+      comission: 0,
+      totalD: 0,
+      detailFees: {
+        'fee': 0,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,9 @@ class _QuotationScreenState extends State<QuotationScreen> {
                 .captureAndSharePng(globalKey: _globalKey, invoice: invoice),
             child: SizedBox(width: 100, child: Center(child: Text('Imprimir'))),
           ),
-          SizedBox(height: 50,)
+          SizedBox(
+            height: 50,
+          )
         ],
       ),
     );
@@ -79,23 +82,23 @@ class _QuotationScreenState extends State<QuotationScreen> {
                 style: _textStyle),
             Text('Estado: ${invoice.stateUsa}', style: _textStyle),
             Text('Puja de Carro: ${invoice.bidPrice}', style: _textStyle),
-            _widgetTaxes(title: 'Barco y grua', value: '\$ ${invoice.ship}'),
-            _widgetTaxes(
-                title: 'Transferencias', value: '\$ ${invoice.transfers}'),
-            _widgetTaxes(title: 'Papeleria', value: '\$ ${invoice.documents}'),
-            _widgetTaxes(
-                title: 'Almacenaje, poliza y grua',
-                value: '\$ ${invoice.poliza}'),
-            _widgetTaxes(title: 'Placas', value: '\$ ${invoice.placas}'),
-            _widgetTaxes(
-                title: 'Tramite placas', value: '\$ ${invoice.tramitePlacas}'),
-            _widgetTaxes(
-                title: 'Titulo y tarjeta', value: '\$ ${invoice.titleAndCard}'),
-            _widgetTaxes(title: 'Comision', value: '\$ ${invoice.comission}'),
+            ...detailFeesWidget(),
+            // _widgetTaxes(title: 'Barco y grua', value: '\$ ${invoice.ship}'),
+            // _widgetTaxes(
+            //     title: 'Transferencias', value: '\$ ${invoice.transfers}'),
+            // _widgetTaxes(title: 'Papeleria', value: '\$ ${invoice.documents}'),
+            // _widgetTaxes(
+            //     title: 'Almacenaje, poliza y grua',
+            //     value: '\$ ${invoice.poliza}'),
+            // _widgetTaxes(title: 'Placas', value: '\$ ${invoice.placas}'),
+            // _widgetTaxes(
+            //     title: 'Tramite placas', value: '\$ ${invoice.tramitePlacas}'),
+            // _widgetTaxes(
+            //     title: 'Titulo y tarjeta', value: '\$ ${invoice.titleAndCard}'),
+            // _widgetTaxes(title: 'Comision', value: '\$ ${invoice.comission}'),
             SizedBox(height: 15),
             Text('Total en \$ ${invoice.totalD}', style: _totalTextStyle),
             SizedBox(height: 15),
-            Text('Total en Q ${invoice.totalQ}', style: _totalTextStyle),
           ],
         ),
       ),
@@ -113,5 +116,17 @@ class _QuotationScreenState extends State<QuotationScreen> {
         Text(value),
       ],
     );
+  }
+
+  List<Widget> detailFeesWidget() {
+    List<Widget> widgets = [];
+
+    invoice.detailFees.forEach(
+      (key, value) => widgets.add(
+        _widgetTaxes(title: key, value: '\$ $value'),
+      ),
+    );
+
+    return widgets;
   }
 }
