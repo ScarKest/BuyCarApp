@@ -34,12 +34,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           _optionCard(
             image: 'assets/images/vehicule_gold.jpg',
-            title: 'Hitorial de cotizaciones',
+            title: 'Precio de Factura',
             onPressed: () =>
-                Navigator.pushNamed(context, '/history_transactions'),
+                Navigator.pushNamed(context, '/invoiceCopart'),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.1,
+          ),
+          _optionCard(
+            image: 'assets/images/vehicule_gold.jpg',
+            title: 'Hitorial de cotizaciones',
+            onPressed: () =>
+                Navigator.pushNamed(context, '/history_transactions'),
           ),
         ],
       ),

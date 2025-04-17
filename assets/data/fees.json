@@ -4,7 +4,7 @@
             {
                 "secure_payment": [
                     {
-                        "min": 0,
+                        "min": 0.0,
                         "max": 49.99,
                         "fee": 25.00
                     },
@@ -233,7 +233,7 @@
             {
                 "unsecure_payment": [
                     {
-                        "min": 0,
+                        "min": 0.0,
                         "max": 49.99,
                         "fee": 27.50
                     },
@@ -464,111 +464,112 @@
             {
                 "pre_bid_fees": [
                     {
-                        "min": 0,
+                        "min": 0.0,
                         "max": 99.99,
-                        "fee": 0
+                        "fee": 0.0
                     },
                     {
-                        "min": 100,
+                        "min": 100.0,
                         "max": 499.99,
-                        "fee": 39
+                        "fee": 39.0
                     },
                     {
-                        "min": 500,
+                        "min": 500.0,
                         "max": 999.99,
-                        "fee": 49
+                        "fee": 49.0
                     },
                     {
-                        "min": 1000,
+                        "min": 1000.0,
                         "max": 1499.99,
-                        "fee": 69
+                        "fee": 69.0
                     },
                     {
-                        "min": 1500,
+                        "min": 1500.0,
                         "max": 1999.99,
-                        "fee": 79
+                        "fee": 79.0
                     },
                     {
-                        "min": 2000,
+                        "min": 2000.0,
                         "max": 3999.99,
-                        "fee": 89
+                        "fee": 89.0
                     },
                     {
-                        "min": 4000,
+                        "min": 4000.0,
                         "max": 5999.99,
-                        "fee": 99
+                        "fee": 99.0
                     },
                     {
-                        "min": 6000,
+                        "min": 6000.0,
                         "max": 7999.99,
-                        "fee": 119
+                        "fee": 119.0
                     },
                     {
-                        "min": 8000,
+                        "min": 8000.0,
                         "max": null,
-                        "fee": 129
+                        "fee": 129.0
                     }
                 ]
             },
             {
                 "live_bid_fees": [
                     {
-                        "min": 0,
+                        "min": 0.0,
                         "max": 99.99,
-                        "fee": 0
+                        "fee": 0.0
                     },
                     {
-                        "min": 100,
+                        "min": 100.0,
                         "max": 499.99,
-                        "fee": 49
+                        "fee": 49.0
                     },
                     {
-                        "min": 500,
+                        "min": 500.0,
                         "max": 999.99,
-                        "fee": 59
+                        "fee": 59.0
                     },
                     {
-                        "min": 1000,
+                        "min": 1000.0,
                         "max": 1499.99,
-                        "fee": 79
+                        "fee": 79.0
                     },
                     {
-                        "min": 1500,
+                        "min": 1500.0,
                         "max": 1999.99,
-                        "fee": 89
+                        "fee": 89.0
                     },
                     {
-                        "min": 2000,
+                        "min": 2000.0,
                         "max": 3999.99,
-                        "fee": 99
+                        "fee": 99.0
                     },
                     {
-                        "min": 4000,
+                        "min": 4000.0,
                         "max": 5999.99,
-                        "fee": 109
+                        "fee": 109.0
                     },
                     {
-                        "min": 6000,
+                        "min": 6000.0,
                         "max": 7999.99,
-                        "fee": 139
+                        "fee": 139.0
                     },
                     {
-                        "min": 8000,
+                        "min": 8000.0,
                         "max": null,
-                        "fee": 149
+                        "fee": 149.0
                     }
                 ]
             }
         ],
         "gate_fee": 79,
-        "environmental_fee": 10
+        "title_pickup": 20.0,
+        "environmental_fee": 10.0
     },
     "non_clean_title": {
         "bidding_fees": [
             {
                 "secure_payment": [
                     {
-                        "min": 0,
+                        "min": 0.0,
                         "max": 49.99,
                         "fee": 25.00
                     },
@@ -797,7 +798,7 @@
             {
                 "unsecure_payment": [
                     {
-                        "min": 0,
+                        "min": 0.0,
                         "max": 49.99,
                         "fee": 27.50
                     },
@@ -1028,7 +1029,7 @@
             {
                 "pre_bid_fees": [
                     {
-                        "min": 0,
+                        "min": 0.0,
                         "max": 99.99,
                         "fee": "FREE"
                     },
@@ -1077,7 +1078,7 @@
             {
                 "live_bid_fees": [
                     {
-                        "min": 0,
+                        "min": 0.0,
                         "max": 99.99,
                         "fee": "FREE"
                     },
@@ -1124,8 +1125,8 @@
                 ]
             }
         ],
-        "gate_fee": 79,
-        "environmental_fee": 10,
-        "title_pickup": 20
+        "gate_fee": 79.0,
+        "environmental_fee": 10.0,
+        "title_pickup": 20.0
     }
 }

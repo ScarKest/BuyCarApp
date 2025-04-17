@@ -17,9 +17,21 @@ Future<Map<String, dynamic>> calculateTotal({
 
   // Obtener tarifa de bidding
   // String metodoPago = isSecurePayment ? "secure_payment" : "unsecure_payment";
+  String metodoPago = isSecurePayment ? "secure_payment" : "unsecure_payment";
+
+// Buscar el mapa correspondiente dentro de la lista
+  Map<String, dynamic> feeMap = (fees["bidding_fees"] as List)
+      .firstWhere((e) => e.containsKey(metodoPago));
+
+// Obtener la lista de tarifas
+  List<dynamic> biddingFees = feeMap[metodoPago];
+
+  log('Feeessssss $biddingFees');
+
+  detailFees["Bidding Fee"] = _buscarFee(biddingFees, price);
+
   log('Feeessssss ${fees["bidding_fees"][1]}');
-  detailFees["Bidding Fee"] =
-      _buscarFee(fees["bidding_fees"](isSecurePayment) ? [0] : [1], price);
+    // detailFees["Bidding Fee"] = _buscarFee(fees["bidding_fees"][0], price);
   total += detailFees["Bidding Fee"]!;
 
   // Obtener tarifas de virtual bid
@@ -37,7 +49,7 @@ Future<Map<String, dynamic>> calculateTotal({
   // Sumar tarifas fijas
   detailFees["Gate Fee"] = fees["gate_fee"].toDouble();
   detailFees["Environmental Fee"] = fees["environmental_fee"].toDouble();
-  detailFees["Title PickUp"] = fees["title_pickup"].toDouble();
+  detailFees["Title PickUp"] = fees["title_pickup"];
   total += detailFees["Gate Fee"]! +
       detailFees["Environmental Fee"]! +
       detailFees["Title PickUp"]!;
