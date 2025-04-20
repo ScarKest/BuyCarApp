@@ -13,6 +13,7 @@ class InvoiceCopartScreen extends StatefulWidget {
 
 class _InvoiceCopartScreenState extends State<InvoiceCopartScreen> {
   TextEditingController controller = TextEditingController();
+  double totalTaxes = 0.0;
   double total = 0.0;
 
   String virtualFee = '';
@@ -39,8 +40,9 @@ class _InvoiceCopartScreenState extends State<InvoiceCopartScreen> {
               ),
             ),
             TextButton(
-                onPressed: () => invoiceCalculate(controller.text),
-                child: Text('Calcular')),
+              onPressed: () => invoiceCalculate(controller.text),
+              child: Text('Calcular', style: TextStyle(fontSize: 30)),
+            ),
             // TextField(
             //   decoration: InputDecoration(
             //     icon: Icon(Icons.eco_outlined),
@@ -48,6 +50,7 @@ class _InvoiceCopartScreenState extends State<InvoiceCopartScreen> {
             //   ),
             //   enabled: false,
             // ),
+            SizedBox(height: 20,),
             TextField(
               decoration: InputDecoration(
                 icon: const Icon(Icons.money),
@@ -67,10 +70,21 @@ class _InvoiceCopartScreenState extends State<InvoiceCopartScreen> {
                 icon: Icon(Icons.car_crash),
                 label: Text('Gate \$$gateFee'),
               ),
+              enabled: false,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.car_crash),
+                label: Text('Total Taxes \$$totalTaxes'),
+              ),
+              enabled: false,
             ),
             Container(
               padding: EdgeInsets.all(50),
-              child: Text('Total: \$$total'),
+              child: Text(
+                'Total: \$$total',
+                style: TextStyle(fontSize: 30),
+              ),
             )
           ],
         ),
@@ -91,7 +105,8 @@ class _InvoiceCopartScreenState extends State<InvoiceCopartScreen> {
         gateFee = value['detalle']['Gate Fee'].toString();
         titlePickupFee = value['detalle']['Title PickUp'].toString();
         buyerFee = value['detalle']['Bidding Fee'].toString();
-        total = double.parse(value['total'].toString());
+        totalTaxes = double.parse(value['total'].toString());
+        total = double.parse(price) + double.parse(value['total'].toString());
       });
     });
   }

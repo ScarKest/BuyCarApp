@@ -38,10 +38,12 @@ Future<Map<String, dynamic>> calculateTotal({
       detailFees['pre_bid_fees'] = _buscarFee(bidType.values.first, price);
       total += detailFees['pre_bid_fees']!;
       log('Total con prebid feee $total');
+      break;
     } else {
       detailFees['live_bid_fees'] = _buscarFee(bidType.values.first, price);
       total += detailFees['live_bid_fees']!;
       log('Total con live bid fee $total');
+      break;
     }
   }
 
