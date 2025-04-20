@@ -13,6 +13,7 @@ Future<Map<String, dynamic>> calculateTotal({
   Map<String, dynamic> fees = feesData[titleType];
 
   double total = 0;
+
   Map<String, double> detailFees = {};
 
   // Obtener tarifa de bidding
@@ -26,23 +27,21 @@ Future<Map<String, dynamic>> calculateTotal({
 // Obtener la lista de tarifas
   List<dynamic> biddingFees = feeMap[metodoPago];
 
-  log('Feeessssss $biddingFees');
-
   detailFees["Bidding Fee"] = _buscarFee(biddingFees, price);
 
-  log('Feeessssss ${fees["bidding_fees"][1]}');
-    // detailFees["Bidding Fee"] = _buscarFee(fees["bidding_fees"][0], price);
   total += detailFees["Bidding Fee"]!;
+  log('Total con bidin fee $total');
 
   // Obtener tarifas de virtual bid
   for (var bidType in fees["virtual_bid_fee"]) {
     if (isPreBidFee) {
-      // String feeName = bidType.keys.first;
       detailFees['pre_bid_fees'] = _buscarFee(bidType.values.first, price);
       total += detailFees['pre_bid_fees']!;
+      log('Total con prebid feee $total');
     } else {
       detailFees['live_bid_fees'] = _buscarFee(bidType.values.first, price);
       total += detailFees['live_bid_fees']!;
+      log('Total con live bid fee $total');
     }
   }
 
@@ -50,9 +49,14 @@ Future<Map<String, dynamic>> calculateTotal({
   detailFees["Gate Fee"] = fees["gate_fee"].toDouble();
   detailFees["Environmental Fee"] = fees["environmental_fee"].toDouble();
   detailFees["Title PickUp"] = fees["title_pickup"];
-  total += detailFees["Gate Fee"]! +
-      detailFees["Environmental Fee"]! +
-      detailFees["Title PickUp"]!;
+  total += detailFees["Gate Fee"]!;
+  log('Total con gate  $total');
+
+  total += detailFees["Environmental Fee"]!;
+  log('Total con enviromental $total');
+
+  total += detailFees["Title PickUp"]!;
+  log('Total con live bid fee $total');
 
   return {
     "total": total,
