@@ -21,6 +21,7 @@ class _InvoiceCopartScreenState extends State<InvoiceCopartScreen> {
   String titlePickupFee = '';
   String buyerFee = '';
   String salePrice = '';
+  bool isVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,46 +51,55 @@ class _InvoiceCopartScreenState extends State<InvoiceCopartScreen> {
             //   ),
             //   enabled: false,
             // ),
-            SizedBox(height: 20,),
-            TextField(
-              decoration: InputDecoration(
-                icon: const Icon(Icons.money),
-                label: Text('Virtual Fee \$${virtualFee.toString()}'),
-              ),
-              enabled: false,
+            SizedBox(
+              height: 20,
             ),
-            TextField(
-              decoration: InputDecoration(
-                icon: const Icon(Icons.car_crash),
-                label: Text('Buyer Fee \$${buyerFee.toString()}'),
-              ),
-              enabled: false,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                icon: Icon(Icons.car_crash),
-                label: Text('Gate \$$gateFee'),
-              ),
-              enabled: false,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                icon: Icon(Icons.car_crash),
-                label: Text('Total Taxes \$$totalTaxes'),
-              ),
-              enabled: false,
-            ),
-            Container(
-              padding: EdgeInsets.all(50),
-              child: Text(
-                'Total: \$$total',
-                style: TextStyle(fontSize: 30),
-              ),
-            )
+
+           ...(isVisible) ? _showWidgets() : [Container()],
           ],
         ),
       ),
     );
+  }
+
+  List<Widget> _showWidgets() {
+    return [
+      TextField(
+        decoration: InputDecoration(
+          icon: const Icon(Icons.money),
+          label: Text('Virtual Fee \$${virtualFee.toString()}'),
+        ),
+        enabled: false,
+      ),
+      TextField(
+        decoration: InputDecoration(
+          icon: const Icon(Icons.car_crash),
+          label: Text('Buyer Fee \$${buyerFee.toString()}'),
+        ),
+        enabled: false,
+      ),
+      TextField(
+        decoration: InputDecoration(
+          icon: Icon(Icons.car_crash),
+          label: Text('Gate \$$gateFee'),
+        ),
+        enabled: false,
+      ),
+      TextField(
+        decoration: InputDecoration(
+          icon: Icon(Icons.car_crash),
+          label: Text('Total Taxes \$$totalTaxes'),
+        ),
+        enabled: false,
+      ),
+      Container(
+        padding: EdgeInsets.all(50),
+        child: Text(
+          'Total: \$$total',
+          style: TextStyle(fontSize: 30),
+        ),
+      )
+    ];
   }
 
   invoiceCalculate(String price) async {
@@ -107,6 +117,7 @@ class _InvoiceCopartScreenState extends State<InvoiceCopartScreen> {
         buyerFee = value['detalle']['Bidding Fee'].toString();
         totalTaxes = double.parse(value['total'].toString());
         total = double.parse(price) + double.parse(value['total'].toString());
+        isVisible = true;
       });
     });
   }
