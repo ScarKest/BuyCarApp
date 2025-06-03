@@ -27,32 +27,32 @@ class _VehiculeFormState extends State<VehiculeForm> {
               key: state.formKey,
               child: Column(
                 children: [
-                  _buildTextField('Cliente', state.clientController),
-                  _buildTextField('Teléfono', state.telephoneController,
-                      keyboardType: TextInputType.number, maxLength: 8),
-                  _buildTextField('Marca, modelo y año', state.carController),
-                  _buildTextField('Lote', state.lotController,
-                      keyboardType: TextInputType.number, maxLength: 8),
+                  // _buildTextField('Cliente', state.clientController),
+                  // _buildTextField('Teléfono', state.telephoneController,
+                  //     keyboardType: TextInputType.number, maxLength: 8),
+                  // _buildTextField('Marca, modelo y año', state.carController),
+                  // _buildTextField('Lote', state.lotController,
+                  //     keyboardType: TextInputType.number, maxLength: 8),
                   _buildTextField('Puja de Carro', state.priceController,
                       keyboardType: TextInputType.number),
-                  CheckboxListTile(
-                    title: Text('Titulo Limpio'),
-                    value: isCleanTitle,
-                    onChanged: (bool? value) =>
-                        setState(() => isCleanTitle = value!),
-                  ),
-                  CheckboxListTile(
-                    title: Text('Compra Ya'),
-                    value: isPreBidFee,
-                    onChanged: (bool? value) =>
-                        setState(() => isPreBidFee = value!),
-                  ),
+                  // CheckboxListTile(
+                  //   title: Text('Titulo Limpio'),
+                  //   value: isCleanTitle,
+                  //   onChanged: (bool? value) =>
+                  //       setState(() => isCleanTitle = value!),
+                  // ),
+                  // CheckboxListTile(
+                  //   title: Text('Compra Ya'),
+                  //   value: isPreBidFee,
+                  //   onChanged: (bool? value) =>
+                  //       setState(() => isPreBidFee = value!),
+                  // ),
                   SizedBox(height: 60),
                   ElevatedButton(
                     onPressed: () => bloc.createQuotation(
+                      //TODO Determine how can i implements discounts of secure payments
                       isPreBidFee: isPreBidFee,
                       isCleanTitle: isCleanTitle,
-                      //TODO Determine how can i implements discounts of secure payments
                       isSecurePayment: false,
                       context: context,
                     ),

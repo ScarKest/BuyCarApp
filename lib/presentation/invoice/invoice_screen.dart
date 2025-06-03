@@ -25,13 +25,7 @@ class _QuotationScreenState extends State<QuotationScreen> {
       stateUsa: '',
       bidPrice: 0,
       ship: 0,
-      transfers: 0,
-      documents: 0,
       poliza: 0,
-      placas: 0,
-      tramitePlacas: 0,
-      titleAndCard: 0,
-      comission: 0,
       totalD: 0,
       detailFees: {
         'fee': 0,
@@ -77,27 +71,17 @@ class _QuotationScreenState extends State<QuotationScreen> {
           children: [
             Image.asset('assets/images/contac_us.png'),
             Text('Cliente: ${invoice.client}', style: _textStyle),
-            Text('Carro: ${invoice.vehicleData}', style: _textStyle),
-            Text('Lote: https://www.copart.com/lot/${invoice.lot}',
-                style: _textStyle),
-            Text('Estado: ${invoice.stateUsa}', style: _textStyle),
+            // Text('Carro: ${invoice.vehicleData}', style: _textStyle),
+            // Text('Lote: https://www.copart.com/lot/${invoice.lot}',
+            //     style: _textStyle),
+            // Text('Estado: ${invoice.stateUsa}', style: _textStyle),
             Text('Puja de Carro: ${invoice.bidPrice}', style: _textStyle),
             ...detailFeesWidget(),
-            // _widgetTaxes(title: 'Barco y grua', value: '\$ ${invoice.ship}'),
-            // _widgetTaxes(
-            //     title: 'Transferencias', value: '\$ ${invoice.transfers}'),
-            // _widgetTaxes(title: 'Papeleria', value: '\$ ${invoice.documents}'),
-            // _widgetTaxes(
-            //     title: 'Almacenaje, poliza y grua',
-            //     value: '\$ ${invoice.poliza}'),
-            // _widgetTaxes(title: 'Placas', value: '\$ ${invoice.placas}'),
-            // _widgetTaxes(
-            //     title: 'Tramite placas', value: '\$ ${invoice.tramitePlacas}'),
-            // _widgetTaxes(
-            //     title: 'Titulo y tarjeta', value: '\$ ${invoice.titleAndCard}'),
-            // _widgetTaxes(title: 'Comision', value: '\$ ${invoice.comission}'),
             SizedBox(height: 15),
-            Text('Total en \$ ${invoice.totalD}', style: _totalTextStyle),
+            _buildCard('Total en \$ ',invoice.totalD, highlight = true)
+            _buildCard('Total en Q ',invoice.totalD * 7.9, highlight = true)
+            // Text('Total en \$ ${invoice.totalD}', style: _totalTextStyle),
+            // Text('Total en Q ${invoice.totalD * 7.9}', style: _totalTextStyle),
             SizedBox(height: 15),
           ],
         ),
@@ -115,6 +99,25 @@ class _QuotationScreenState extends State<QuotationScreen> {
         Expanded(child: Container()),
         Text(value),
       ],
+    );
+  }
+
+  Widget _buildCard(String title, double amount, {bool highlight = false}) {
+    return Card(
+      color: highlight ? Colors.deepPurple[100] : Colors.white,
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: ListTile(
+        leading: const Icon(Icons.directions_car),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        trailing: Text(formatter.format(amount),
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: highlight ? Colors.deepPurple : Colors.black,
+            )),
+      ),
     );
   }
 

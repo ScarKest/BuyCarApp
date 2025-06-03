@@ -29,24 +29,24 @@ class _HomeScreenState extends State<HomeScreen> {
             title: 'Vehiculo',
             onPressed: () => Navigator.pushNamed(context, '/vehicule'),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
-          ),
-          _optionCard(
-            image: 'assets/images/vehicule_gold.jpg',
-            title: 'Precio de Factura',
-            onPressed: () =>
-                Navigator.pushNamed(context, '/invoiceCopart'),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
-          ),
-          _optionCard(
-            image: 'assets/images/vehicule_gold.jpg',
-            title: 'Hitorial de cotizaciones',
-            onPressed: () =>
-                Navigator.pushNamed(context, '/history_transactions'),
-          ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.height * 0.1,
+          // ),
+          // _optionCard(
+          //   image: 'assets/images/vehicule_gold.jpg',
+          //   title: 'Precio de Factura',
+          //   onPressed: () =>
+          //       Navigator.pushNamed(context, '/invoiceCopart'),
+          // ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.height * 0.1,
+          // ),
+          // _optionCard(
+          //   image: 'assets/images/vehicule_gold.jpg',
+          //   title: 'Hitorial de cotizaciones',
+          //   onPressed: () =>
+          //       Navigator.pushNamed(context, '/history_transactions'),
+          // ),
         ],
       ),
     );

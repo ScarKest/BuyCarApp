@@ -43,7 +43,7 @@ class Quotation {
     //TODO Ask dad price of this
     required this.poliza,
     this.placas = 20,
-    this.tramitePlacas = 40,
+    this.tramitePlacas = 50,
     this.titleAndCard = 20,
     this.comission = 255,
     required this.totalD,
